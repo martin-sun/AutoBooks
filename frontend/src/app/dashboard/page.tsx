@@ -19,10 +19,49 @@ export default function DashboardPage() {
         router.replace("/register");
       }
     });
-    supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(async ({ data }) => {
       setSession(data.session);
       if (!data.session) {
         router.replace("/register");
+      } else {
+        const user = data.session.user;
+        if (user) {
+          // 检查 public.users 是否存在该用户
+          const { data: userRows, error: userError } = await supabase
+            .from('users')
+            .select('id')
+            .eq('id', user.id)
+            .single();
+          if (!userRows && !userError) {
+            await supabase.from('users').insert({
+              id: user.id,
+              email: user.email
+            });
+          }
+
+          // 检查是否有 workspace，没有则创建默认 personal workspace
+          let workspaceId = null;
+          let { data: workspaces, error: wsError } = await supabase
+            .from('workspaces')
+            .select('id')
+            .eq('user_id', user.id);
+          if ((!workspaces || workspaces.length === 0) && !wsError) {
+            // 创建 workspace
+            const { data: newWs, error: createError } = await supabase.from('workspaces').insert({
+              user_id: user.id,
+              name: 'Personal workspace',
+              type: 'personal',
+              currency: 'CAD'
+            }).select('id').single();
+            workspaceId = newWs?.id;
+          } else if (workspaces && workspaces.length > 0) {
+            workspaceId = workspaces[0].id;
+          }
+          // 跳转到 workspace dashboard
+          if (workspaceId) {
+            router.replace(`/dashboard/${workspaceId}`);
+          }
+        }
       }
       setLoading(false);
     });
@@ -31,35 +70,7 @@ export default function DashboardPage() {
     };
   }, [router]);
 
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200">Loading...</div>;
-  }
-
-  if (!session) {
-    return null; // 跳转中
-  }
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-      <div className="w-full max-w-xl bg-white dark:bg-gray-800 rounded-lg shadow p-8 flex flex-col gap-6">
-        <h1 className="text-2xl font-bold text-blue-600 text-center">Welcome to AutoBooks Dashboard</h1>
-        <p className="text-center text-gray-700 dark:text-gray-200">
-          你已成功登录，接下来可以管理你的账本和工作空间。
-        </p>
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-gray-500 dark:text-gray-400 text-sm">当前用户：</span>
-          <span className="font-mono text-blue-700 dark:text-blue-300">{session.user.email}</span>
-        </div>
-        <button
-          className="mt-4 w-full py-2 px-4 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-md font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-          onClick={async () => {
-            await supabase.auth.signOut();
-            router.replace("/register");
-          }}
-        >
-          Sign out
-        </button>
-      </div>
-    </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200">Loading...</div>
   );
 }
