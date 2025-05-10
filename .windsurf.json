@@ -1,0 +1,78 @@
+{
+  "projectName": "AutoBooks",
+  "description": "多租户会计/记账系统，支持加拿大税务、软删除、RLS、审计日志等。",
+  "database": {
+    "requireCreatedAt": true,
+    "requireUpdatedAt": true,
+    "requireSoftDelete": true,
+    "primaryKeyType": "uuid",
+    "rlsEnforced": true,
+    "auditLogRequired": true,
+    "multiTenant": {
+      "workspaceIsolation": true,
+      "workspaceIdField": "workspace_id"
+    },
+    "mustHaveTables": [
+      "users",
+      "workspaces",
+      "chart_of_accounts",
+      "accounts",
+      "transactions",
+      "transaction_lines",
+      "inter_workspace_balances",
+      "tags",
+      "transaction_tags",
+      "taxes",
+      "transaction_taxes",
+      "audit_logs",
+      "budgets",
+      "budget_items"
+    ]
+  },
+  "accounting": {
+    "doubleEntryEnforced": true,
+    "transactionBalanceTrigger": true,
+    "currency": "CAD",
+    "supportMultiCurrency": true,
+    "taxEngine": {
+      "supportGST": true,
+      "supportPST": true,
+      "supportHST": true,
+      "inputTaxCredit": true
+    }
+  },
+  "api": {
+    "style": "REST+GraphQL",
+    "pagination": "cursor",
+    "errorFormat": "standard",
+    "timezone": "UTC",
+    "userTimezoneConversion": true
+  },
+  "conventions": {
+    "directoryStructure": [
+      "supabase/migrations",
+      "src",
+      "tests"
+    ],
+    "naming": {
+      "table": "snake_case",
+      "column": "snake_case"
+    },
+    "softDeleteField": "is_deleted",
+    "timestampFields": ["created_at", "updated_at"]
+  },
+  "security": {
+    "rowLevelSecurity": true,
+    "rlsIsolationField": "workspace_id"
+  },
+  "workflows": {
+    "preCommit": ["lint", "test"],
+    "migrations": "supabase cli",
+    "typesGeneration": "supabase gen types typescript"
+  },
+  "future": {
+    "multiCurrency": true,
+    "ocrUpload": true,
+    "craXmlFiling": true
+  }
+}
