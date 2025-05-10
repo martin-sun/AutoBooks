@@ -1,6 +1,12 @@
 {
   "projectName": "AutoBooks",
-  "description": "多租户会计/记账系统，支持加拿大税务、软删除、RLS、审计日志等。",
+  "description": "Multi-tenant accounting/bookkeeping system with support for Canadian taxes, soft delete, RLS, audit logs, etc.",
+  "codeLanguage": {
+    "primary": "English",
+    "comments": "English",
+    "documentation": "English",
+    "communicationLanguage": "Chinese"
+  },
   "database": {
     "requireCreatedAt": true,
     "requireUpdatedAt": true,
@@ -48,6 +54,7 @@
     "timezone": "UTC",
     "userTimezoneConversion": true,
     "apiFirst": true,
+    "languageStandard": "English",
     "frontend": {
       "framework": "nextjs",
       "css": "tailwindcss",

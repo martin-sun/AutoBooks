@@ -19,6 +19,7 @@ export default function DashboardPage() {
         router.replace("/register");
       }
     });
+    
     supabase.auth.getSession().then(async ({ data }) => {
       setSession(data.session);
       if (!data.session) {
@@ -26,45 +27,29 @@ export default function DashboardPage() {
       } else {
         const user = data.session.user;
         if (user) {
-          // 检查 public.users 是否存在该用户
-          const { data: userRows, error: userError } = await supabase
-            .from('users')
-            .select('id')
-            .eq('id', user.id)
-            .single();
-          if (!userRows && !userError) {
-            await supabase.from('users').insert({
-              id: user.id,
-              email: user.email
-            });
-          }
-
-          // 检查是否有 workspace，没有则创建默认 personal workspace
-          let workspaceId = null;
+          // 查询用户的workspace (后端已自动创建)
           let { data: workspaces, error: wsError } = await supabase
             .from('workspaces')
             .select('id')
-            .eq('user_id', user.id);
-          if ((!workspaces || workspaces.length === 0) && !wsError) {
-            // 创建 workspace
-            const { data: newWs, error: createError } = await supabase.from('workspaces').insert({
-              user_id: user.id,
-              name: 'Personal workspace',
-              type: 'personal',
-              currency: 'CAD'
-            }).select('id').single();
-            workspaceId = newWs?.id;
-          } else if (workspaces && workspaces.length > 0) {
-            workspaceId = workspaces[0].id;
-          }
-          // 跳转到 workspace dashboard
-          if (workspaceId) {
-            router.replace(`/dashboard/${workspaceId}`);
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: true })
+            .limit(1);
+
+          if (workspaces && workspaces.length > 0) {
+            // 跳转到默认workspace的dashboard
+            router.replace(`/dashboard/${workspaces[0].id}`);
+          } else {
+            // 如果出现异常情况（理论上不应该发生，因为后端会自动创建）
+            console.error("No workspace found and backend trigger failed", wsError);
+            setLoading(false);
           }
         }
       }
+    }).catch(err => {
+      console.error("Error checking session:", err);
       setLoading(false);
     });
+    
     return () => {
       authListener.subscription.unsubscribe();
     };
