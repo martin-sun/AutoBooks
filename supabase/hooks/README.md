@@ -1,32 +1,55 @@
 # Supabase Hooks Configuration
 
-This directory contains hook functions and triggers that need to be manually configured in the Supabase Dashboard.
+This directory previously contained hook functions that needed to be manually configured in the Supabase Dashboard.
 
-## Auto-Create Workspace Hook
+## Workspace Creation (Deprecated)
 
-Automatically creates a default personal workspace for new users upon registration.
+The functionality to automatically create a default personal workspace for new users has been moved to an Edge Function implementation.
 
-### Configuration Steps
+### Current Implementation
 
-1. Log in to the Supabase Dashboard
-2. Select the AutoBooks project
-3. Navigate to the SQL Editor
-4. Execute the SQL code in the `auto_create_workspace.sql` file
-5. Navigate to Authentication > Hooks
-6. Click "Add new hook"
-7. Select event type: "After a user is created"
-8. Select function: "public.handle_new_user"
-9. Save the settings
+The automatic workspace creation is now handled by an Edge Function located at:
+`/supabase/functions/create-workspace/`
 
-### Functionality
+Please refer to the README in that directory for deployment and configuration instructions.
 
-This hook implements the following features:
-- Automatically creates a user record in the `public.users` table when a new user registers
-- Checks if the user already has a workspace
-- If not, creates a default "Personal workspace"
-- The frontend code automatically queries the user's workspace and redirects to the appropriate dashboard page
+### Why Edge Functions?
 
-### Important Notes
+- More reliable than auth hooks which require manual configuration
+- Better error handling and debugging capabilities
+- Can be deployed through CI/CD pipelines
+- Frontend can retry if the function fails
+- No need to manually configure hooks in the Supabase Dashboard
 
-- This hook requires manual configuration because Supabase's auth schema is protected and cannot be directly modified through regular migration files
-- If you modify the hook function logic, you need to re-execute it in the SQL Editor and update the hook configuration
+## User Synchronization: `auth.users` to `public.users`
+
+To ensure data consistency, especially when other tables (like `workspaces`) have foreign key constraints referencing `public.users(id)`, it's crucial to keep `public.users` synchronized with `auth.users`.
+
+The following SQL scripts facilitate this synchronization. They should be run in your Supabase project's SQL Editor.
+
+### 1. Create User Sync Function
+
+This function (`handle_new_user`) is responsible for inserting a new record into `public.users` whenever a new user signs up and a record is added to `auth.users`.
+
+- **File**: `sync_auth_user_to_public_users_function.sql`
+- **Action**: Run the content of this file in the Supabase SQL Editor once.
+
+### 2. Create User Sync Trigger
+
+This trigger (`on_auth_user_created`) automatically executes the `handle_new_user` function after every new user insertion in `auth.users`.
+
+- **File**: `sync_auth_user_to_public_users_trigger.sql`
+- **Action**: Run the content of this file in the Supabase SQL Editor once, *after* successfully creating the `handle_new_user` function.
+
+### 3. Backfill Existing Users (One-time or as needed)
+
+If `public.users` is currently empty or missing users that already exist in `auth.users`, this script will populate `public.users` with those existing records.
+
+- **File**: `backfill_public_users_from_auth_users.sql`
+- **Action**: Run the content of this file in the Supabase SQL Editor after setting up the function and trigger. This is primarily a one-time setup for existing data but can be re-run if necessary (it's designed to only insert missing users).
+
+**Important Notes:**
+
+- **Order of Execution**: It's crucial to run these scripts in the order specified (Function -> Trigger -> Backfill).
+- **Customization**: The SQL scripts assume a `public.users` table with at least `id`, `email`, and `created_at` columns. If your table structure is different, or you wish to sync more/different fields from `auth.users`, you'll need to modify the `INSERT` statements within `sync_auth_user_to_public_users_function.sql` and `backfill_public_users_from_auth_users.sql` accordingly.
+- **Deployment**: The function and trigger are database objects that, once created, persist and work automatically. The SQL files in this directory are for your reference, version control, and for initial setup or if you need to recreate these database objects.

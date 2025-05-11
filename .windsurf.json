@@ -109,5 +109,20 @@
     "multiCurrency": true,
     "ocrUpload": true,
     "craXmlFiling": true
+  },
+  "workspaceTypes": {
+    "defaultType": "personal",
+    "supportedTypes": ["personal", "business"],
+    "description": "Each user is automatically assigned a personal workspace upon registration for daily personal accounting. Users can additionally create one or more business workspaces for small business financial management.",
+    "interWorkspaceTransactions": {
+      "enabled": true,
+      "clearingAccountRequired": true,
+      "description": "Allows users to associate personal expense accounts with business accounts, supporting scenarios where personal expenses are used for business purposes. Through dedicated 'inter-workspace clearing accounts' and double-entry transaction mechanisms, cross-workspace fund transfers and reconciliation are achieved."
+    },
+    "canadianBusinessFocus": {
+      "description": "System design fully considers the needs of Canadian small business users, satisfying both personal financial management and business financial requirements, with flexible switching and interoperability between the two.",
+      "taxCompliance": true,
+      "selfEmployedSupport": true
+    }
   }
 }
