@@ -32,8 +32,17 @@
       "transaction_taxes",
       "audit_logs",
       "budgets",
-      "budget_items"
-    ]
+      "budget_items",
+      "sidebar_templates",
+      "sidebar_menu_items",
+      "workspace_menu_configs"
+    ],
+    "sidebarMenu": {
+      "dynamicMenuByWorkspaceType": true,
+      "supportMultilevelMenu": true,
+      "maxMenuDepth": 3,
+      "menuItemCustomization": true
+    }
   },
   "accounting": {
     "doubleEntryEnforced": true,
