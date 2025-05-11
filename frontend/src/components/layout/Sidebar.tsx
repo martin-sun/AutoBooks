@@ -6,8 +6,7 @@ import { MenuItem as MenuItemType, fetchSidebarMenu } from '@/lib/api/sidebar-me
 import MenuItem from './MenuItem';
 // 不再需要 createClient
 import WorkspaceSwitcher from '../ui/WorkspaceSwitcher';
-import CreateWorkspaceModal from '../ui/CreateWorkspaceModal';
-import { Plus, Building } from 'lucide-react';
+import { Building } from 'lucide-react';
 
 interface SidebarProps {
   workspaceId: string;
@@ -19,7 +18,6 @@ const Sidebar: React.FC<SidebarProps> = ({ workspaceId, onWorkspaceChange }) => 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -59,21 +57,10 @@ const Sidebar: React.FC<SidebarProps> = ({ workspaceId, onWorkspaceChange }) => 
     }
   };
 
-  const handleWorkspaceCreated = (newWorkspaceId: string) => {
-    // Switch to the new workspace after successful creation
-    handleWorkspaceChange(newWorkspaceId);
-  };
+
 
   return (
     <div className={`h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-all duration-300 ${collapsed ? 'w-16' : 'w-64'}`}>
-      {/* 创建工作空间模态框 */}
-      {showCreateModal && (
-        <CreateWorkspaceModal 
-          isOpen={showCreateModal} 
-          onClose={() => setShowCreateModal(false)} 
-          onWorkspaceCreated={handleWorkspaceCreated} 
-        />
-      )}
       {/* Sidebar header */}
       <div className="flex flex-col border-b border-gray-200 dark:border-gray-800">
         {/* Workspace switcher */}
@@ -94,20 +81,11 @@ const Sidebar: React.FC<SidebarProps> = ({ workspaceId, onWorkspaceChange }) => 
           )}
         </div>
         
-        {/* Collapse/expand button and add workspace button */}
-        <div className="flex items-center justify-between px-4 py-2 bg-gray-50 dark:bg-gray-850">
-          {!collapsed && (
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="flex items-center text-sm text-blue-600 hover:text-blue-700"
-            >
-              <Plus size={16} className="mr-1" />
-              <span>Add Business Workspace</span>
-            </button>
-          )}
+        {/* Collapse/expand button */}
+        <div className="flex items-center justify-end px-4 py-2 bg-gray-50 dark:bg-gray-850">
           <button 
             onClick={toggleSidebar}
-            className="p-1 ml-auto rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
             title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
           >
             {collapsed ? (

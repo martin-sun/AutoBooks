@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { ChevronDown, Building, User } from 'lucide-react';
+import { ChevronDown, Building, User, Plus } from 'lucide-react';
+import CreateWorkspaceModal from './CreateWorkspaceModal';
 
 interface Workspace {
   id: string;
@@ -23,6 +24,8 @@ const WorkspaceSwitcher: React.FC<WorkspaceSwitcherProps> = ({
   const [currentWorkspace, setCurrentWorkspace] = useState<Workspace | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [hasBusinessWorkspace, setHasBusinessWorkspace] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
@@ -50,6 +53,10 @@ const WorkspaceSwitcher: React.FC<WorkspaceSwitcherProps> = ({
           if (current) {
             setCurrentWorkspace(current);
           }
+          
+          // Check if user already has a business workspace
+          const businessWorkspace = data.find(ws => ws.type === 'business');
+          setHasBusinessWorkspace(!!businessWorkspace);
         }
       } catch (err) {
         console.error('Error in fetchWorkspaces:', err);
@@ -66,6 +73,12 @@ const WorkspaceSwitcher: React.FC<WorkspaceSwitcherProps> = ({
     onWorkspaceChange(workspace.id);
     setIsOpen(false);
   };
+  
+  const handleWorkspaceCreated = (newWorkspaceId: string) => {
+    // Refresh workspaces list and switch to the new workspace
+    onWorkspaceChange(newWorkspaceId);
+    setShowCreateModal(false);
+  };
 
   if (loading) {
     return (
@@ -81,6 +94,15 @@ const WorkspaceSwitcher: React.FC<WorkspaceSwitcherProps> = ({
 
   return (
     <div className="relative">
+      {/* CreateWorkspaceModal */}
+      {showCreateModal && (
+        <CreateWorkspaceModal 
+          isOpen={showCreateModal} 
+          onClose={() => setShowCreateModal(false)} 
+          onWorkspaceCreated={handleWorkspaceCreated} 
+        />
+      )}
+      
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -118,6 +140,22 @@ const WorkspaceSwitcher: React.FC<WorkspaceSwitcherProps> = ({
                 </button>
               </li>
             ))}
+            
+            {/* Add Business Workspace option - only show if user doesn't have one */}
+            {!hasBusinessWorkspace && (
+              <li>
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    setShowCreateModal(true);
+                  }}
+                  className="flex items-center w-full px-3 py-2 text-sm text-blue-600 hover:bg-gray-100"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Business Workspace
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       )}

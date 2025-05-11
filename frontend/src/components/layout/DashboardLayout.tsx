@@ -106,6 +106,15 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
     if (newWorkspaceId !== workspaceId) {
       setIsChangingWorkspace(true);
       setWorkspaceId(newWorkspaceId);
+      
+      // Update URL with new workspace ID
+      const currentPath = window.location.pathname;
+      const basePath = currentPath.split('/').slice(0, 2).join('/');
+      const newPath = `${basePath}/${newWorkspaceId}`;
+      
+      // Use router.push to update the URL without full page reload
+      router.push(newPath);
+      
       // Short delay before resetting state to give UI time to update
       setTimeout(() => setIsChangingWorkspace(false), 500);
     }
