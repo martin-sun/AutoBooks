@@ -63,6 +63,30 @@ const MenuItem: React.FC<MenuItemProps> = ({
   depth = 0,
   isOpen = false
 }) => {
+  // 获取当前 URL 中的 workspaceId
+  const getWorkspaceId = () => {
+    // 如果在浏览器环境中
+    if (typeof window !== 'undefined') {
+      const pathParts = window.location.pathname.split('/');
+      // 预期的路径格式是 /dashboard/:workspaceId/...
+      if (pathParts.length >= 3 && pathParts[1] === 'dashboard') {
+        return pathParts[2];
+      }
+    }
+    return '';
+  };
+  
+  // 处理路由中的占位符
+  const processRoute = (route: string) => {
+    const workspaceId = getWorkspaceId();
+    if (!workspaceId) return route;
+    
+    // 替换各种可能的占位符格式
+    return route
+      .replace(':workspace_id', workspaceId)
+      .replace('{workspace_id}', workspaceId)
+      .replace('%7Bworkspace_id%7D', workspaceId);
+  };
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(isOpen);
   const hasChildren = item.children && item.children.length > 0;
@@ -98,7 +122,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
           </div>
         ) : (
           <Link 
-            href={item.route} 
+            href={processRoute(item.route)} 
             className={`flex items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 ${isActive ? 'bg-gray-100 dark:bg-gray-800 font-medium' : ''}`}
             style={{ paddingLeft }}
           >
