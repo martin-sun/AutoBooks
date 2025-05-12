@@ -1,7 +1,9 @@
 // Asset Management API
 // Created: 2025-05-11
 
-// 模拟数据实现，避免使用 Edge Functions 和数据库查询
+import { createClient } from '@supabase/supabase-js';
+
+// 使用 Supabase 客户端直接查询数据库，避免使用 Edge Functions
 
 // Define types for asset management
 export interface AssetCategory {
@@ -51,173 +53,63 @@ export interface AssetTransaction {
 // Function to fetch asset categories for a workspace
 export async function fetchAssetCategories(workspaceId: string): Promise<AssetCategory[]> {
   try {
-    // 模拟工作空间数据
-    console.log(`Fetching mock workspace data for ID: ${workspaceId}`);
+    console.log(`Fetching asset categories for workspace ID: ${workspaceId}`);
     
-    // 根据工作空间 ID 的最后一个字符决定类型，仅作演示用途
-    const workspaceType = workspaceId.endsWith('1') || workspaceId.endsWith('3') || workspaceId.endsWith('5') || workspaceId.endsWith('7') || workspaceId.endsWith('9') ? 'business' : 'personal';
+    // 创建 Supabase 客户端
+    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
+    const supabase = createClient(supabaseUrl, supabaseKey);
     
-    const workspace = {
-      id: workspaceId,
-      type: workspaceType
-    };
+    // 首先获取工作空间信息，以便根据类型过滤资产类别
+    const { data: workspace, error: workspaceError } = await supabase
+      .from('workspaces')
+      .select('id, type')
+      .eq('id', workspaceId)
+      .single();
     
-    console.log(`Using workspace type: ${workspace.type} for workspace ID: ${workspaceId}`)
-    
-    console.log(`Returning mock asset categories for ${workspace.type} workspace: ${workspaceId}`);
-    
-    // 根据工作空间类型创建不同的模拟数据
-    // 两种工作空间类型都可以使用的类别
-    const bothCategories: AssetCategory[] = [
-      {
-        id: 'cat1',
-        name: 'Computer Equipment',
-        type: 'both',
-        parent_id: null,
-        system_defined: true,
-        children: [
-          {
-            id: 'cat1-1',
-            name: 'Laptops',
-            type: 'both',
-            parent_id: 'cat1',
-            system_defined: true,
-            children: []
-          },
-          {
-            id: 'cat1-2',
-            name: 'Desktops',
-            type: 'both',
-            parent_id: 'cat1',
-            system_defined: true,
-            children: []
-          },
-          {
-            id: 'cat1-3',
-            name: 'Monitors',
-            type: 'both',
-            parent_id: 'cat1',
-            system_defined: true,
-            children: []
-          }
-        ]
-      },
-      {
-        id: 'cat2',
-        name: 'Office Furniture',
-        type: 'both',
-        parent_id: null,
-        system_defined: true,
-        children: [
-          {
-            id: 'cat2-1',
-            name: 'Desks',
-            type: 'both',
-            parent_id: 'cat2',
-            system_defined: true,
-            children: []
-          },
-          {
-            id: 'cat2-2',
-            name: 'Chairs',
-            type: 'both',
-            parent_id: 'cat2',
-            system_defined: true,
-            children: []
-          }
-        ]
-      },
-      {
-        id: 'cat4',
-        name: 'Software',
-        type: 'both',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      }
-    ];
-    
-    // 仅商业工作空间可使用的类别
-    const businessCategories: AssetCategory[] = [
-      {
-        id: 'cat3',
-        name: 'Vehicles',
-        type: 'business',
-        parent_id: null,
-        system_defined: true,
-        children: [
-          {
-            id: 'cat3-1',
-            name: 'Cars',
-            type: 'business',
-            parent_id: 'cat3',
-            system_defined: true,
-            children: []
-          },
-          {
-            id: 'cat3-2',
-            name: 'Trucks',
-            type: 'business',
-            parent_id: 'cat3',
-            system_defined: true,
-            children: []
-          }
-        ]
-      },
-      {
-        id: 'cat7',
-        name: 'Real Estate',
-        type: 'business',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      },
-      {
-        id: 'cat8',
-        name: 'Manufacturing Equipment',
-        type: 'business',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      }
-    ];
-    
-    // 仅个人工作空间可使用的类别
-    const personalCategories: AssetCategory[] = [
-      {
-        id: 'cat5',
-        name: 'Personal Electronics',
-        type: 'personal',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      },
-      {
-        id: 'cat6',
-        name: 'Mobile Devices',
-        type: 'personal',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      },
-      {
-        id: 'cat9',
-        name: 'Home Office',
-        type: 'personal',
-        parent_id: null,
-        system_defined: true,
-        children: []
-      }
-    ];
-    
-    // 根据工作空间类型返回不同的类别
-    if (workspace.type === 'business') {
-      console.log(`Returning categories for business workspace: ${bothCategories.length + businessCategories.length}`);
-      return [...bothCategories, ...businessCategories];
-    } else {
-      console.log(`Returning categories for personal workspace: ${bothCategories.length + personalCategories.length}`);
-      return [...bothCategories, ...personalCategories];
+    if (workspaceError || !workspace) {
+      console.error('Error fetching workspace:', workspaceError);
+      throw new Error(workspaceError?.message || 'Workspace not found');
     }
+    
+    console.log(`Fetching categories for ${workspace.type} workspace: ${workspaceId}`);
+    
+    // 获取所有资产类别
+    const { data: allCategories, error: categoriesError } = await supabase
+      .from('asset_categories')
+      .select('*')
+      .eq('is_deleted', false)
+      .order('name');
+    
+    if (categoriesError || !allCategories) {
+      console.error('Error fetching asset categories:', categoriesError);
+      throw new Error(categoriesError?.message || 'Failed to fetch asset categories');
+    }
+    
+    // 根据工作空间类型过滤类别
+    const filteredCategories = allCategories.filter(category => 
+      category.type === 'both' || category.type === workspace.type
+    );
+    
+    // 组织类别为层级结构
+    const topLevelCategories = filteredCategories.filter(cat => !cat.parent_id);
+    const childCategories = filteredCategories.filter(cat => cat.parent_id);
+    
+    // 构建层级结构
+    const result = topLevelCategories.map(parent => {
+      return {
+        ...parent,
+        children: childCategories
+          .filter(child => child.parent_id === parent.id)
+          .map(child => ({
+            ...child,
+            children: []
+          }))
+      };
+    });
+    
+    console.log(`Successfully fetched ${result.length} top-level categories for ${workspace.type} workspace`);
+    return result;
   } catch (error) {
     console.error('Error fetching asset categories:', error);
     throw error;
@@ -227,149 +119,32 @@ export async function fetchAssetCategories(workspaceId: string): Promise<AssetCa
 // Function to fetch assets for a workspace
 export async function fetchAssets(workspaceId: string): Promise<Asset[]> {
   try {
-    // 模拟工作空间数据
-    console.log(`Fetching mock workspace data for ID: ${workspaceId}`);
+    console.log(`Fetching assets for workspace ID: ${workspaceId}`);
     
-    // 根据工作空间 ID 的最后一个字符决定类型，仅作演示用途
-    const workspaceType = workspaceId.endsWith('1') || workspaceId.endsWith('3') || workspaceId.endsWith('5') || workspaceId.endsWith('7') || workspaceId.endsWith('9') ? 'business' : 'personal';
+    // 创建 Supabase 客户端
+    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
+    const supabase = createClient(supabaseUrl, supabaseKey);
     
-    const workspace = {
-      id: workspaceId,
-      type: workspaceType
-    };
+    // 直接查询当前工作空间的资产
+    const { data: assets, error: assetsError } = await supabase
+      .from('assets')
+      .select(`
+        *,
+        category:asset_categories(id, name, type, parent_id, system_defined),
+        account:accounts(id, name)
+      `)
+      .eq('workspace_id', workspaceId)
+      .eq('is_deleted', false)
+      .order('name');
     
-    console.log(`Using workspace type: ${workspace.type} for workspace ID: ${workspaceId}`)
-    
-    console.log(`Fetching assets for ${workspace.type} workspace: ${workspaceId}`);
-    
-    // 不需要额外获取工作空间信息，因为我们已经在上面模拟了
-    
-    console.log(`Fetching assets for ${workspace.type} workspace: ${workspaceId}`);
-    
-    // 使用模拟数据返回示例资产，避免数据库查询问题
-    console.log(`Returning mock assets for workspace ${workspaceId} (${workspace.type} type)`);
-    
-    // 根据工作空间类型创建不同的模拟数据
-    let mockAssets: Asset[] = [];
-    
-    // 两种工作空间类型都可以使用的资产
-    const bothAssets: Asset[] = [
-      {
-        id: '1',
-        workspace_id: workspaceId,
-        category_id: 'cat1',
-        account_id: 'acc1',
-        name: 'Office Computer',
-        description: 'Main workstation for development',
-        purchase_date: '2025-01-15',
-        purchase_value: 1500,
-        current_value: 1200,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 20,
-        depreciation_period: 36,
-        currency: 'CAD',
-        category: { id: 'cat1', name: 'Computer Equipment', type: 'both', parent_id: null, system_defined: true }
-      },
-      {
-        id: '2',
-        workspace_id: workspaceId,
-        category_id: 'cat2',
-        account_id: 'acc1',
-        name: 'Office Furniture',
-        description: 'Desk and chair',
-        purchase_date: '2025-02-10',
-        purchase_value: 800,
-        current_value: 750,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 10,
-        depreciation_period: 60,
-        currency: 'CAD',
-        category: { id: 'cat2', name: 'Office Furniture', type: 'both', parent_id: null, system_defined: true }
-      }
-    ];
-    
-    // 仅商业工作空间可使用的资产
-    const businessAssets: Asset[] = [
-      {
-        id: '3',
-        workspace_id: workspaceId,
-        category_id: 'cat3',
-        account_id: 'acc2',
-        name: 'Company Vehicle',
-        description: 'Delivery van',
-        purchase_date: '2024-11-05',
-        purchase_value: 25000,
-        current_value: 22500,
-        depreciation_method: 'reducing_balance',
-        depreciation_rate: 15,
-        depreciation_period: 84,
-        currency: 'CAD',
-        category: { id: 'cat3', name: 'Vehicles', type: 'business', parent_id: null, system_defined: true }
-      },
-      {
-        id: '4',
-        workspace_id: workspaceId,
-        category_id: 'cat4',
-        account_id: 'acc2',
-        name: 'Office Building',
-        description: 'Main office location',
-        purchase_date: '2023-08-15',
-        purchase_value: 450000,
-        current_value: 460000,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 5,
-        depreciation_period: 300,
-        currency: 'CAD',
-        category: { id: 'cat4', name: 'Real Estate', type: 'business', parent_id: null, system_defined: true }
-      }
-    ];
-    
-    // 仅个人工作空间可使用的资产
-    const personalAssets: Asset[] = [
-      {
-        id: '5',
-        workspace_id: workspaceId,
-        category_id: 'cat5',
-        account_id: 'acc3',
-        name: 'Personal Laptop',
-        description: 'MacBook Pro for personal use',
-        purchase_date: '2024-12-10',
-        purchase_value: 2200,
-        current_value: 1800,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 20,
-        depreciation_period: 36,
-        currency: 'CAD',
-        category: { id: 'cat5', name: 'Personal Electronics', type: 'personal', parent_id: null, system_defined: true }
-      },
-      {
-        id: '6',
-        workspace_id: workspaceId,
-        category_id: 'cat6',
-        account_id: 'acc3',
-        name: 'Smartphone',
-        description: 'iPhone for personal use',
-        purchase_date: '2025-01-05',
-        purchase_value: 1200,
-        current_value: 1000,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 25,
-        depreciation_period: 24,
-        currency: 'CAD',
-        category: { id: 'cat6', name: 'Mobile Devices', type: 'personal', parent_id: null, system_defined: true }
-      }
-    ];
-    
-    // 根据工作空间类型返回不同的资产
-    if (workspace.type === 'business') {
-      mockAssets = [...bothAssets, ...businessAssets];
-      console.log(`Returning ${mockAssets.length} assets for business workspace`);
-    } else {
-      mockAssets = [...bothAssets, ...personalAssets];
-      console.log(`Returning ${mockAssets.length} assets for personal workspace`);
+    if (assetsError || !assets) {
+      console.error('Error fetching assets:', assetsError);
+      throw new Error(assetsError?.message || 'Failed to fetch assets');
     }
     
-    return mockAssets;
+    console.log(`Successfully fetched ${assets.length} assets for workspace ${workspaceId}`);
+    return assets;
   } catch (error) {
     console.error('Error fetching assets:', error);
     throw error;
@@ -379,149 +154,32 @@ export async function fetchAssets(workspaceId: string): Promise<Asset[]> {
 // Function to fetch a single asset by ID
 export async function fetchAsset(assetId: string): Promise<Asset> {
   try {
-    // 使用模拟数据，不需要 Supabase 客户端
+    console.log(`Fetching asset with ID: ${assetId}`);
     
-    console.log(`Returning mock asset with ID: ${assetId}`);
+    // 创建 Supabase 客户端
+    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
+    const supabase = createClient(supabaseUrl, supabaseKey);
     
-    // 模拟资产数据
-    const mockAssets: Asset[] = [
-      // 两种工作空间类型都可以使用的资产
-      {
-        id: '1',
-        workspace_id: 'any-workspace',
-        category_id: 'cat1',
-        account_id: 'acc1',
-        name: 'Office Computer',
-        description: 'Main workstation for development',
-        purchase_date: '2025-01-15',
-        purchase_value: 1500,
-        current_value: 1200,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 20,
-        depreciation_period: 36,
-        currency: 'CAD',
-        category: { id: 'cat1', name: 'Computer Equipment', type: 'both', parent_id: null, system_defined: true },
-        account: { id: 'acc1', name: 'Office Equipment Account' },
-        transactions: [
-          {
-            id: 'tx1',
-            asset_id: '1',
-            type: 'purchase',
-            amount: 1500,
-            transaction_date: '2025-01-15',
-            notes: 'Initial purchase'
-          },
-          {
-            id: 'tx2',
-            asset_id: '1',
-            type: 'depreciation',
-            amount: 300,
-            transaction_date: '2025-04-15',
-            notes: 'Quarterly depreciation'
-          }
-        ]
-      },
-      {
-        id: '2',
-        workspace_id: 'any-workspace',
-        category_id: 'cat2',
-        account_id: 'acc1',
-        name: 'Office Furniture',
-        description: 'Desk and chair',
-        purchase_date: '2025-02-10',
-        purchase_value: 800,
-        current_value: 750,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 10,
-        depreciation_period: 60,
-        currency: 'CAD',
-        category: { id: 'cat2', name: 'Office Furniture', type: 'both', parent_id: null, system_defined: true },
-        account: { id: 'acc1', name: 'Office Equipment Account' },
-        transactions: [
-          {
-            id: 'tx3',
-            asset_id: '2',
-            type: 'purchase',
-            amount: 800,
-            transaction_date: '2025-02-10',
-            notes: 'Initial purchase'
-          }
-        ]
-      },
-      // 仅商业工作空间可使用的资产
-      {
-        id: '3',
-        workspace_id: 'any-workspace',
-        category_id: 'cat3',
-        account_id: 'acc2',
-        name: 'Company Vehicle',
-        description: 'Delivery van',
-        purchase_date: '2024-11-05',
-        purchase_value: 25000,
-        current_value: 22500,
-        depreciation_method: 'reducing_balance',
-        depreciation_rate: 15,
-        depreciation_period: 84,
-        currency: 'CAD',
-        category: { id: 'cat3', name: 'Vehicles', type: 'business', parent_id: null, system_defined: true },
-        account: { id: 'acc2', name: 'Vehicle Account' },
-        transactions: [
-          {
-            id: 'tx4',
-            asset_id: '3',
-            type: 'purchase',
-            amount: 25000,
-            transaction_date: '2024-11-05',
-            notes: 'Initial purchase'
-          },
-          {
-            id: 'tx5',
-            asset_id: '3',
-            type: 'depreciation',
-            amount: 2500,
-            transaction_date: '2025-02-05',
-            notes: 'Quarterly depreciation'
-          }
-        ]
-      },
-      // 仅个人工作空间可使用的资产
-      {
-        id: '5',
-        workspace_id: 'any-workspace',
-        category_id: 'cat5',
-        account_id: 'acc3',
-        name: 'Personal Laptop',
-        description: 'MacBook Pro for personal use',
-        purchase_date: '2024-12-10',
-        purchase_value: 2200,
-        current_value: 1800,
-        depreciation_method: 'straight_line',
-        depreciation_rate: 20,
-        depreciation_period: 36,
-        currency: 'CAD',
-        category: { id: 'cat5', name: 'Personal Electronics', type: 'personal', parent_id: null, system_defined: true },
-        account: { id: 'acc3', name: 'Personal Electronics Account' },
-        transactions: [
-          {
-            id: 'tx6',
-            asset_id: '5',
-            type: 'purchase',
-            amount: 2200,
-            transaction_date: '2024-12-10',
-            notes: 'Initial purchase'
-          }
-        ]
-      }
-    ];
+    // 查询单个资产及其相关信息
+    const { data: asset, error: assetError } = await supabase
+      .from('assets')
+      .select(`
+        *,
+        category:asset_categories(id, name, type, parent_id, system_defined),
+        account:accounts(id, name),
+        transactions:asset_transactions(*)
+      `)
+      .eq('id', assetId)
+      .eq('is_deleted', false)
+      .single();
     
-    // 查找匹配的资产
-    const asset = mockAssets.find(a => a.id === assetId);
-    
-    if (!asset) {
-      throw new Error(`Asset with ID ${assetId} not found`);
+    if (assetError || !asset) {
+      console.error('Error fetching asset:', assetError);
+      throw new Error(assetError?.message || `Asset with ID ${assetId} not found`);
     }
     
-    console.log('Successfully fetched mock asset:', asset.name);
+    console.log('Successfully fetched asset:', asset.name);
     
     return asset;
   } catch (error) {
