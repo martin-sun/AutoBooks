@@ -54,31 +54,19 @@ const iconMap: Record<string, React.ReactNode> = {
 
 interface MenuItemProps {
   item: MenuItemType;
+  workspaceId: string;
   depth?: number;
   isOpen?: boolean;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ 
   item, 
+  workspaceId, 
   depth = 0,
   isOpen = false
 }) => {
-  // 获取当前 URL 中的 workspaceId
-  const getWorkspaceId = () => {
-    // 如果在浏览器环境中
-    if (typeof window !== 'undefined') {
-      const pathParts = window.location.pathname.split('/');
-      // 预期的路径格式是 /dashboard/:workspaceId/...
-      if (pathParts.length >= 3 && pathParts[1] === 'dashboard') {
-        return pathParts[2];
-      }
-    }
-    return '';
-  };
-  
   // 处理路由中的占位符
   const processRoute = (route: string) => {
-    const workspaceId = getWorkspaceId();
     if (!workspaceId) return route;
     
     // 替换各种可能的占位符格式
@@ -139,6 +127,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
             <MenuItem 
               key={child.id} 
               item={child} 
+              workspaceId={workspaceId} 
               depth={depth + 1} 
             />
           ))}

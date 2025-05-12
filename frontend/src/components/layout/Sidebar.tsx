@@ -138,7 +138,8 @@ const Sidebar: React.FC<SidebarProps> = ({ workspaceId, onWorkspaceChange }) => 
               <MenuItem 
                 key={item.id} 
                 item={item} 
-                isOpen={pathname.startsWith(item.route)}
+                workspaceId={workspaceId}
+                isOpen={pathname ? pathname.startsWith(item.route) : false}
               />
             ))}
           </div>
@@ -149,4 +150,3 @@ const Sidebar: React.FC<SidebarProps> = ({ workspaceId, onWorkspaceChange }) => 
 };
 
 export default Sidebar;
-

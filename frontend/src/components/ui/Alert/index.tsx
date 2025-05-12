@@ -25,9 +25,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 );
 Alert.displayName = 'Alert';
 
-interface AlertDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
-
-const AlertDescription = React.forwardRef<HTMLParagraphElement, AlertDescriptionProps>(
+const AlertDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(
   ({ className, ...props }, ref) => {
     return (
       <div

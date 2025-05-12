@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase-client";
 import { 
@@ -16,131 +14,96 @@ import {
   BarChart
 } from "lucide-react";
 import Link from "next/link";
-import { fetchAsset, Asset, AssetTransaction, deleteAsset } from "@/lib/api/asset-management";
+import { fetchAsset, Asset, deleteAsset } from '@/lib/api/asset-management';
 
-// 确保使用硬编码的 API URL 和密钥，因为环境变量可能没有正确加载
-// 使用共享的Supabase客户端实例
+type Workspace = {
+  id: string;
+  name: string;
+  type: string;
+  currency: string;
+  user_id: string;
+};
 
 export default function AssetDetailPage() {
   const router = useRouter();
   const params = useParams();
-  const workspaceId = Array.isArray(params.workspace_id) ? params.workspace_id[0] : params.workspace_id as string;
-  const assetId = Array.isArray(params.asset_id) ? params.asset_id[0] : params.asset_id as string;
-  
-  // 确保 workspaceId 是有效的 UUID 格式
-  useEffect(() => {
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    if (!workspaceId || !uuidRegex.test(workspaceId)) {
-      console.log('Invalid workspace ID format, redirecting to dashboard');
-      router.push('/dashboard');
-      return;
-    }
-  }, [workspaceId, router]);
-  
   const [asset, setAsset] = useState<Asset | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [workspace, setWorkspace] = useState<any>(null);
+  const [workspace, setWorkspace] = useState<Workspace | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  
+
+  const workspaceId = params?.workspace_id as string | undefined;
+  const assetId = params?.asset_id as string | undefined;
+
+  const handleDelete = useCallback(async () => {
+    if (!asset?.id || !workspaceId) return;
+
+    setDeleting(true);
+    setError(null); 
+    try {
+      await deleteAsset(asset.id);
+      router.push(`/dashboard/${workspaceId}/assets`); 
+    } catch (err) {
+      console.error("Error deleting asset:", err);
+      setError(err instanceof Error ? err.message : 'Failed to delete asset');
+      setDeleting(false); 
+    } finally {
+      setDeleteConfirm(false); 
+    }
+  }, [asset, workspaceId, router, setDeleting, setError, setDeleteConfirm]); 
+
   useEffect(() => {
-    async function loadData() {
+    if (!workspaceId) return; 
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(workspaceId)) {
+      router.push('/dashboard');
+    }
+  }, [workspaceId, router]);
+
+  useEffect(() => {
+    if (!workspaceId || !assetId) return; 
+
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-        setError(null);
-        
-        // 首先检查会话
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session) {
-          console.log('No session found, redirecting to register');
-          router.push('/register');
-          return;
-        }
-        
-        console.log('Loading data for workspace ID:', workspaceId);
-        
-        // 使用更可靠的方法获取工作空间信息
-        if (!workspaceId || typeof workspaceId !== 'string') {
-          console.error('Invalid workspace ID:', workspaceId);
-          router.push('/dashboard');
-          return;
-        }
-        
-        // 先检查工作空间是否存在
-        const workspacesResponse = await supabase
+        const { data: workspaceData } = await supabase
           .from('workspaces')
-          .select('id, name, type, currency, user_id')
-          .eq('id', workspaceId);
-        
-        console.log('Workspace response:', workspacesResponse);
-        
-        if (workspacesResponse.error) {
-          console.error('Error fetching workspace:', workspacesResponse.error);
-          setError(`Error fetching workspace: ${workspacesResponse.error.message}`);
+          .select('*')
+          .eq('id', workspaceId)
+          .single();
+
+        if (!workspaceData) {
+          setError('Workspace not found'); 
+          setLoading(false);
           return;
         }
-        
-        if (!workspacesResponse.data || workspacesResponse.data.length === 0) {
-          console.error('Workspace not found');
-          setError('Workspace not found');
-          router.push('/dashboard');
-          return;
-        }
-        
-        const ws = workspacesResponse.data[0];
-        console.log('Found workspace:', ws);
-        setWorkspace(ws);
-        
-        // Load asset details
+        setWorkspace(workspaceData);
+
         const assetData = await fetchAsset(assetId);
         setAsset(assetData);
-        
+        setError(null); 
       } catch (err) {
-        console.error("Error loading asset:", err);
-        setError(err instanceof Error ? err.message : "Failed to load asset");
+        console.error("Error fetching data:", err);
+        setError(err instanceof Error ? err.message : 'Failed to load asset data');
       } finally {
         setLoading(false);
       }
-    }
-    
-    loadData();
-  }, [workspaceId, assetId]);
+    };
 
-  // Format currency
+    fetchData();
+  }, [workspaceId, assetId]); 
+
+  if (!params?.workspace_id || !params?.asset_id) {
+    return <div>Loading parameters or invalid URL...</div>; 
+  }
+
   const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-CA', { 
-      style: 'currency', 
-      currency: asset?.currency || workspace?.currency || 'CAD' 
-    }).format(amount);
+    return `${workspace?.currency || '$'}${amount.toFixed(2)}`;
   };
 
-  // Format date
-  const formatDate = (dateString: string): string => {
-    return new Date(dateString).toLocaleDateString('en-CA', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  // Handle asset deletion
-  const handleDelete = async () => {
-    if (!asset?.id) return;
-    
-    try {
-      setDeleting(true);
-      await deleteAsset(asset.id);
-      router.push(`/dashboard/${workspaceId}/assets`);
-    } catch (err) {
-      console.error("Error deleting asset:", err);
-      setError(err instanceof Error ? err.message : "Failed to delete asset");
-      setDeleting(false);
-      setDeleteConfirm(false);
-    }
-  };
-
-  if (loading) {
+  if (loading && !asset) {
     return (
       <div className="flex items-center justify-center h-full p-8">
         <div className="flex flex-col items-center">
@@ -185,10 +148,8 @@ export default function AssetDetailPage() {
     );
   }
 
-  // Determine if we should show business-specific fields
   const isBusinessWorkspace = workspace?.type === 'business';
 
-  // Sort transactions by date (newest first)
   const sortedTransactions = asset.transactions 
     ? [...asset.transactions].sort((a, b) => 
         new Date(b.transaction_date).getTime() - new Date(a.transaction_date).getTime()
@@ -282,7 +243,11 @@ export default function AssetDetailPage() {
                     <h3 className="text-sm font-medium text-gray-500 mb-2">Purchase Date</h3>
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 text-indigo-500 mr-2" />
-                      <p className="text-gray-800">{formatDate(asset.purchase_date)}</p>
+                      <p className="text-gray-800">{new Date(asset.purchase_date).toLocaleDateString('en-CA', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}</p>
                     </div>
                   </div>
                 )}
@@ -367,7 +332,11 @@ export default function AssetDetailPage() {
                     {sortedTransactions.map((transaction) => (
                       <tr key={transaction.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">{formatDate(transaction.transaction_date)}</div>
+                          <div className="text-sm text-gray-900">{new Date(transaction.transaction_date).toLocaleDateString('en-CA', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}</div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
