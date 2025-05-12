@@ -4,15 +4,30 @@ import { useRouter, useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase-client";
 import type { Session } from "@supabase/supabase-js";
 
+interface Workspace {
+  id: string;
+  name: string;
+  type: 'personal' | 'business';
+  currency: string;
+  // Add other workspace properties as needed
+}
+
 export default function WorkspaceDashboardPage() {
   const router = useRouter();
   const params = useParams();
-  const workspaceId = params.workspace_id as string;
+  // Add null check and ensure workspace_id is a string
+  const workspaceId = params?.workspace_id ? (Array.isArray(params.workspace_id) ? params.workspace_id[0] : params.workspace_id as string) : null;
   const [session, setSession] = useState<Session | null>(null);
-  const [workspace, setWorkspace] = useState<any>(null);
+  const [workspace, setWorkspace] = useState<Workspace | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Early return if workspaceId is not valid
+    if (!workspaceId) {
+      router.replace("/dashboard");
+      return;
+    }
+    
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (!session) {

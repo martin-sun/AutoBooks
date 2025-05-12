@@ -127,7 +127,7 @@ export default function NewChartOfAccountPage() {
                 </label>
                 <Select
                   value={formData.type}
-                  onChange={(e) => handleSelectChange(e.target.value)}
+                  onValueChange={handleSelectChange}
                   className="w-full"
                 >
                   <option value="asset">Asset</option>
