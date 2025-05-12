@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useWorkspace } from '@/lib/hooks/use-workspace';
+import { useWorkspace } from '../../lib/hooks/useWorkspace';
 import { fetchChartOfAccounts, ChartOfAccount } from '@/lib/api/chart-of-accounts';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/Button';

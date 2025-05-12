@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from './Sidebar';
+import DashboardHeader from './DashboardHeader';
 import { createClient } from '@supabase/supabase-js';
 
 interface DashboardLayoutProps {
@@ -129,17 +130,25 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       />
       
       {/* Main content area */}
-      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-950">
-        {isChangingWorkspace ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
-        ) : (
-          <div className="container mx-auto px-4 py-6">
-            {children}
-          </div>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header with fiscal year selector */}
+        {!isChangingWorkspace && workspaceId && (
+          <DashboardHeader workspaceId={workspaceId} />
         )}
-      </main>
+        
+        {/* Main content */}
+        <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-950">
+          {isChangingWorkspace ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          ) : (
+            <div className="container mx-auto px-4 py-6">
+              {children}
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };

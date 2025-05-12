@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase-client';
 
 // 定义工作空间类型
 export interface Workspace {
@@ -10,11 +10,6 @@ export interface Workspace {
   created_at?: string;
   updated_at?: string;
 }
-
-// 创建 Supabase 客户端
-const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 // 工作空间钩子
 export function useWorkspace() {

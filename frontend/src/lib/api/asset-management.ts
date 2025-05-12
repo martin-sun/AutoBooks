@@ -1,7 +1,7 @@
 // Asset Management API
 // Created: 2025-05-11
 
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase-client';
 
 // 使用 Supabase 客户端直接查询数据库，避免使用 Edge Functions
 
@@ -55,10 +55,7 @@ export async function fetchAssetCategories(workspaceId: string): Promise<AssetCa
   try {
     console.log(`Fetching asset categories for workspace ID: ${workspaceId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 首先获取工作空间信息，以便根据类型过滤资产类别
     const { data: workspace, error: workspaceError } = await supabase
@@ -121,10 +118,7 @@ export async function fetchAssets(workspaceId: string): Promise<Asset[]> {
   try {
     console.log(`Fetching assets for workspace ID: ${workspaceId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 直接查询当前工作空间的资产
     const { data: assets, error: assetsError } = await supabase
@@ -156,10 +150,7 @@ export async function fetchAsset(assetId: string): Promise<Asset> {
   try {
     console.log(`Fetching asset with ID: ${assetId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 查询单个资产及其相关信息
     const { data: asset, error: assetError } = await supabase

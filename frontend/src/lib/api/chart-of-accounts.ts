@@ -1,7 +1,7 @@
 // Chart of Accounts API
 // Created: 2025-05-11
 
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase-client';
 
 // 定义会计科目表类型
 export interface ChartOfAccount {
@@ -37,10 +37,7 @@ export async function fetchChartOfAccounts(workspaceId: string): Promise<ChartOf
   try {
     console.log(`Fetching chart of accounts for workspace ID: ${workspaceId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 查询会计科目表
     const { data: chartOfAccounts, error: chartError } = await supabase
@@ -69,10 +66,7 @@ export async function fetchAccounts(chartId: string): Promise<Account[]> {
   try {
     console.log(`Fetching accounts for chart ID: ${chartId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 查询账户
     const { data: accounts, error: accountsError } = await supabase
@@ -100,10 +94,7 @@ export async function fetchAllAccounts(workspaceId: string): Promise<Account[]> 
   try {
     console.log(`Fetching all accounts for workspace ID: ${workspaceId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 查询账户及其关联的会计科目
     const { data: accounts, error: accountsError } = await supabase
@@ -134,10 +125,7 @@ export async function createChartOfAccount(chartData: ChartOfAccount): Promise<C
   try {
     console.log(`Creating new chart of account: ${chartData.name}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 创建会计科目
     const { data, error } = await supabase
@@ -164,10 +152,7 @@ export async function updateChartOfAccount(chartId: string, chartData: Partial<C
   try {
     console.log(`Updating chart of account with ID: ${chartId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 更新会计科目
     const { data, error } = await supabase
@@ -195,10 +180,7 @@ export async function deleteChartOfAccount(chartId: string): Promise<void> {
   try {
     console.log(`Deleting chart of account with ID: ${chartId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 软删除会计科目
     const { error } = await supabase
@@ -223,10 +205,7 @@ export async function createAccount(accountData: Account): Promise<Account> {
   try {
     console.log(`Creating new account: ${accountData.name}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 创建账户
     const { data, error } = await supabase
@@ -253,10 +232,7 @@ export async function updateAccount(accountId: string, accountData: Partial<Acco
   try {
     console.log(`Updating account with ID: ${accountId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 更新账户
     const { data, error } = await supabase
@@ -284,10 +260,7 @@ export async function deleteAccount(accountId: string): Promise<void> {
   try {
     console.log(`Deleting account with ID: ${accountId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 软删除账户
     const { error } = await supabase
@@ -312,10 +285,7 @@ export async function createDefaultChartOfAccounts(workspaceId: string, workspac
   try {
     console.log(`Creating default chart of accounts for ${workspaceType} workspace: ${workspaceId}`);
     
-    // 创建 Supabase 客户端
-    const supabaseUrl = "https://nvzbsstwyavjultjtcuv.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52emJzc3R3eWF2anVsdGp0Y3V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTMzNTAsImV4cCI6MjA2MTYyOTM1MH0.gVLJFmOBPLpmxtbrHMt4MSsjmu9gvFKoV3491BqKYqM";
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // 使用共享的Supabase客户端实例
     
     // 根据工作空间类型创建不同的默认会计科目表
     if (workspaceType === 'personal') {

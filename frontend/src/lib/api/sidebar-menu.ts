@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../supabase-client';
 
 // 菜单项类型定义
 export interface MenuItem {
@@ -21,16 +21,16 @@ export interface SidebarMenuResponse {
  */
 export async function fetchSidebarMenu(workspaceId: string): Promise<MenuItem[]> {
   try {
-    // 获取当前会话
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // 使用共享的Supabase客户端实例
     
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
       console.error('No active session found');
       return [];
     }
+    
+    // 获取Supabase URL
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://nvzbsstwyavjultjtcuv.supabase.co';
     
     // 调用Edge Function获取菜单数据
     const response = await fetch(
