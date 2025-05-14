@@ -112,7 +112,18 @@
   "workflows": {
     "preCommit": ["lint", "test"],
     "migrations": "supabase cli",
-    "typesGeneration": "supabase gen types typescript"
+    "typesGeneration": "supabase gen types typescript",
+    "databaseChangeProcess": {
+      "description": "All database changes must follow this process",
+      "steps": [
+        "Create local migration file in supabase/migrations directory",
+        "Apply migration to Supabase using Supabase MCP server",
+        "Generate updated TypeScript types"
+      ],
+      "directDatabaseChangesProhibited": true,
+      "useMcpServer": true,
+      "mcpServerName": "supabase"
+    }
   },
   "future": {
     "multiCurrency": true,
