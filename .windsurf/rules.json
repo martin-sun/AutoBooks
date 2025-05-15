@@ -1,0 +1,14 @@
+[
+  {
+    "id": "autobooks_best_practices_rule",
+    "description": "AutoBooks 项目最佳实践和开发规则",
+    "trigger": {
+      "event": "session_start"
+    },
+    "action": {
+      "type": "include_file",
+      "path": "docs/project_guide/best_practices.md",
+      "memory_tags": ["best_practices", "development_standards", "rule"],
+      "importance": "high"
+    }
+  }
