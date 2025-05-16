@@ -30,13 +30,37 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           return;
         }
         
-        // 获取用户的工作空间
+        // 尝试从 URL 中获取工作空间 ID
+        const pathname = window.location.pathname;
+        const pathParts = pathname.split('/');
+        let urlWorkspaceId = null;
+        
+        // 如果 URL 格式是 /dashboard/{workspaceId}/...
+        if (pathParts.length >= 3 && pathParts[1] === 'dashboard') {
+          urlWorkspaceId = pathParts[2];
+        }
+        
+        // 如果从 URL 获取到了工作空间 ID，验证它是否属于当前用户
+        if (urlWorkspaceId) {
+          const { data: workspace, error: wsError } = await supabase
+            .from('workspaces')
+            .select('id')
+            .eq('id', urlWorkspaceId)
+            .eq('user_id', session.user.id)
+            .single();
+          
+          if (!wsError && workspace) {
+            setWorkspaceId(workspace.id);
+            return; // 如果找到了有效的工作空间，直接返回
+          }
+        }
+        
+        // 如果 URL 中没有有效的工作空间 ID，获取用户的默认工作空间
         const { data: workspaces, error } = await supabase
           .from('workspaces')
           .select('id')
           .eq('user_id', session.user.id)
-          .order('created_at', { ascending: true })
-          .limit(1);
+          .order('created_at', { ascending: true });
         
         if (error) {
           console.error('Error fetching workspaces:', error);
@@ -45,11 +69,18 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         
         if (workspaces && workspaces.length > 0) {
           setWorkspaceId(workspaces[0].id);
+          
+          // 如果 URL 中没有工作空间 ID，更新 URL
+          if (!urlWorkspaceId) {
+            const basePath = pathname.split('/').slice(0, 2).join('/');
+            const newPath = `${basePath}/${workspaces[0].id}`;
+            router.push(newPath);
+          }
         } else {
-          // 如果用户没有工作空间，可能需要创建一个
+          // 如果用户没有工作空间，创建一个
           console.log('No workspaces found for user');
           
-          // 这里可以调用create-workspace Edge Function
+          // 调用 create-workspace Edge Function
           const response = await fetch(
             `${supabaseUrl}/functions/v1/create-workspace`,
             {

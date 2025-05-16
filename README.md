@@ -17,6 +17,7 @@ AutoBooks is a modern, multi-tenant bookkeeping and accounting system inspired b
 - **Workspace Model**: Separate accounting books for personal and business, with the ability to settle funds between workspaces (e.g., reimbursements).
 - **Chart of Accounts**: Each workspace maintains its own customizable chart of accounts.
 - **Accounts & Transactions**: Bank, credit card, cash, income, and expense accounts. Transactions are recorded with double-entry lines.
+- **Fiscal Year Management**: Define custom fiscal years and optimize performance with year-based balance calculations.
 - **Cross-Workspace Reimbursement**: Personal payments for business expenses are tracked and settled automatically between workspaces.
 - **Tagging System**: Customizable tags (including tax-deductible flags) for advanced reporting (e.g., medical, donation summaries).
 - **Tax Engine**: User-defined taxes, stackable, with support for recoverable taxes (ITC). Automated GST/PST/HST calculations and reporting.
@@ -42,6 +43,19 @@ AutoBooks implements a comprehensive double-entry bookkeeping system with the fo
   - Transaction lines implement the double-entry system with debits and credits
   - Each transaction must balance (sum of all lines equals zero)
   - Tax information is linked to relevant transaction lines
+
+### Fiscal Year-Based Balance Calculation
+
+AutoBooks implements an optimized approach to account balance calculation based on fiscal years:
+
+- **Fiscal Year Management**: Define and manage custom fiscal years for each workspace
+- **Year-End Processing**: Automated year-end closing entries and balance carryforward
+- **Performance Optimization**: Account balances are calculated efficiently by:
+  - Storing opening balances for each account at the start of each fiscal year
+  - Calculating current balances as: Opening Balance + Sum of Current Year Transactions
+  - Eliminating the need to process historical transactions for balance inquiries
+- **Historical Reporting**: Full support for point-in-time balance reporting within any fiscal year
+- **Audit Trail**: Complete tracking of year-end closing processes and balance carryforwards
 
 ### Complex Business Scenarios Support
 

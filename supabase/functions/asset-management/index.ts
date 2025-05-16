@@ -1,8 +1,14 @@
 // AutoBooks Asset Management Edge Function
 // Created: 2025-05-11
+// Updated: 2025-05-15 - Added GraphQL support for optimized data querying and aggregation
+
+// Reference our local type declarations
+/// <reference path="./types.d.ts" />
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { graphql } from 'https://esm.sh/graphql@16.6.0'
+import { createSchema } from './graphql.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -58,11 +64,40 @@ serve(async (req) => {
         }
       )
     }
-
+    
     // Parse the URL to get the path and query parameters
     const url = new URL(req.url)
     const path = url.pathname.split('/').pop()
     const workspaceId = url.searchParams.get('workspace_id')
+    
+    // Handle GraphQL requests
+    if (path === 'graphql') {
+      if (req.method === 'POST') {
+        const { query, variables } = await req.json()
+        
+        // Create GraphQL schema with the authenticated Supabase client
+        const schema = createSchema(supabaseClient)
+        
+        // Execute the GraphQL query
+        const result = await graphql({
+          schema,
+          source: query,
+          variableValues: variables,
+          contextValue: {
+            supabaseClient,
+            user: session.user,
+          },
+        })
+        
+        return new Response(
+          JSON.stringify(result),
+          {
+            status: 200,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          }
+        )
+      }
+    }
 
     // Handle different operations based on HTTP method and path
     if (req.method === 'GET') {

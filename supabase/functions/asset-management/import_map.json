@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "graphql": "https://esm.sh/graphql@16.6.0?dts",
+    "graphql-tag": "https://esm.sh/graphql-tag@2.12.6?dts",
+    "@graphql-tools/schema": "https://esm.sh/@graphql-tools/schema@9.0.0?dts",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2?dts",
+    "std/http/server": "https://deno.land/std@0.168.0/http/server.ts"
+  }
+}
