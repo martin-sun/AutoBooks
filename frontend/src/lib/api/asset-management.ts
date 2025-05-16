@@ -51,25 +51,36 @@ export interface AssetTransaction {
 }
 
 // Function to fetch asset categories for a workspace
-export async function fetchAssetCategories(workspaceId: string): Promise<AssetCategory[]> {
+export async function fetchAssetCategories(workspaceIdOrType: string): Promise<AssetCategory[]> {
   try {
-    console.log(`Fetching asset categories for workspace ID: ${workspaceId}`);
+    console.log(`Fetching asset categories for: ${workspaceIdOrType}`);
     
     // 使用共享的Supabase客户端实例
     
-    // 首先获取工作空间信息，以便根据类型过滤资产类别
-    const { data: workspace, error: workspaceError } = await supabase
-      .from('workspaces')
-      .select('id, type')
-      .eq('id', workspaceId)
-      .single();
+    // 确定工作空间类型
+    let workspaceType: string;
     
-    if (workspaceError || !workspace) {
-      console.error('Error fetching workspace:', workspaceError);
-      throw new Error(workspaceError?.message || 'Workspace not found');
+    // 检查是否是工作空间类型而不是UUID
+    if (['personal', 'business', 'both'].includes(workspaceIdOrType)) {
+      // 直接使用提供的工作空间类型
+      workspaceType = workspaceIdOrType;
+      console.log(`Using provided workspace type: ${workspaceType}`);
+    } else {
+      // 假设是工作空间ID，尝试获取工作空间信息
+      const { data: workspace, error: workspaceError } = await supabase
+        .from('workspaces')
+        .select('id, type')
+        .eq('id', workspaceIdOrType)
+        .single();
+      
+      if (workspaceError || !workspace) {
+        console.error('Error fetching workspace:', workspaceError);
+        throw new Error(workspaceError?.message || 'Workspace not found');
+      }
+      
+      workspaceType = workspace.type;
+      console.log(`Fetching categories for ${workspaceType} workspace: ${workspaceIdOrType}`);
     }
-    
-    console.log(`Fetching categories for ${workspace.type} workspace: ${workspaceId}`);
     
     // 获取所有资产类别
     const { data: allCategories, error: categoriesError } = await supabase
@@ -85,7 +96,7 @@ export async function fetchAssetCategories(workspaceId: string): Promise<AssetCa
     
     // 根据工作空间类型过滤类别
     const filteredCategories = allCategories.filter(category => 
-      category.type === 'both' || category.type === workspace.type
+      category.type === 'both' || category.type === workspaceType
     );
     
     // 组织类别为层级结构
@@ -105,7 +116,7 @@ export async function fetchAssetCategories(workspaceId: string): Promise<AssetCa
       };
     });
     
-    console.log(`Successfully fetched ${result.length} top-level categories for ${workspace.type} workspace`);
+    console.log(`Successfully fetched ${result.length} top-level categories for ${workspaceType} workspace`);
     return result;
   } catch (error) {
     console.error('Error fetching asset categories:', error);
