@@ -35,9 +35,23 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         const pathParts = pathname.split('/');
         let urlWorkspaceId = null;
         
+        // UUID 验证函数
+        const isValidUUID = (uuid: string) => {
+          const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+          return uuidRegex.test(uuid);
+        };
+        
         // 如果 URL 格式是 /dashboard/{workspaceId}/...
         if (pathParts.length >= 3 && pathParts[1] === 'dashboard') {
-          urlWorkspaceId = pathParts[2];
+          const potentialId = pathParts[2];
+          // 只有当 ID 是有效的 UUID 时才使用它
+          if (isValidUUID(potentialId)) {
+            urlWorkspaceId = potentialId;
+          } else {
+            console.warn(`Invalid workspace ID format in URL: ${potentialId}. Expected UUID format.`);
+            // 无效的 UUID 格式，将重定向到用户的默认工作空间
+            urlWorkspaceId = null;
+          }
         }
         
         // 如果从 URL 获取到了工作空间 ID，验证它是否属于当前用户
@@ -64,6 +78,16 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         
         if (error) {
           console.error('Error fetching workspaces:', error);
+          console.log('User ID:', session.user.id);
+          console.log('Supabase URL:', supabaseUrl);
+          
+          // Try to fetch workspaces with a more detailed query to debug
+          const { data: debugWorkspaces, error: debugError } = await supabase
+            .from('workspaces')
+            .select('*')
+            .limit(5);
+            
+          console.log('Debug workspaces query result:', { data: debugWorkspaces, error: debugError });
           return;
         }
         

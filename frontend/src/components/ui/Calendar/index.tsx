@@ -17,9 +17,9 @@ export interface CalendarProps {
    */
   onSelect?: (date: Date | null) => void;
   /**
-   * Disabled dates
+   * Disabled dates - can be a boolean or a function that determines if a date is disabled
    */
-  disabled?: boolean;
+  disabled?: boolean | ((date: Date) => boolean);
   /**
    * Minimum selectable date
    */
@@ -32,6 +32,10 @@ export interface CalendarProps {
    * Additional CSS class name
    */
   className?: string;
+  /**
+   * Whether to focus the calendar initially
+   */
+  initialFocus?: boolean;
 }
 
 /**
@@ -46,6 +50,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   minDate,
   maxDate,
   className = '',
+  initialFocus,
 }) => {
   // Current year and month being displayed
   const [viewDate, setViewDate] = useState(() => {
@@ -58,6 +63,11 @@ export const Calendar: React.FC<CalendarProps> = ({
   // Get the number of days in the current month
   const getDaysInMonth = (year: number, month: number) => {
     return new Date(year, month + 1, 0).getDate();
+  };
+
+  // Check if a year is a leap year
+  const isLeapYear = (year: number) => {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
   };
 
   // Get the day of week for the first day of the month
@@ -86,16 +96,22 @@ export const Calendar: React.FC<CalendarProps> = ({
     return false;
   };
 
-  // Check if the date is within selectable range
+  // Check if a date is in the allowed range and not disabled
   const isInRange = (date: Date) => {
     if (minDate && date < minDate) return false;
     if (maxDate && date > maxDate) return false;
-    return true;
+    
+    // Check if the date is disabled by a function
+    if (typeof disabled === 'function') {
+      return !disabled(date);
+    }
+    
+    return !disabled;
   };
 
   // Handle date selection
   const handleDateSelect = (date: Date) => {
-    if (disabled || !isInRange(date)) return;
+    if (!isInRange(date)) return;
     if (onSelect) onSelect(date);
   };
 
@@ -174,8 +190,15 @@ export const Calendar: React.FC<CalendarProps> = ({
   // Month names
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'July', 'August', 'September', 'October', 'November', 'December',
   ];
+  
+  // Apply initial focus if requested
+  React.useEffect(() => {
+    if (initialFocus) {
+      // Focus logic would go here if we had a ref to the calendar
+    }
+  }, [initialFocus]);
 
   return (
     <div className={`calendar-container ${className}`}>
@@ -183,7 +206,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         <button
           type="button"
           onClick={prevMonth}
-          disabled={disabled}
+          disabled={typeof disabled === 'boolean' ? disabled : false}
           className="p-1 rounded-md hover:bg-gray-100"
         >
           &lt;
@@ -194,7 +217,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         <button
           type="button"
           onClick={nextMonth}
-          disabled={disabled}
+          disabled={typeof disabled === 'boolean' ? disabled : false}
           className="p-1 rounded-md hover:bg-gray-100"
         >
           &gt;

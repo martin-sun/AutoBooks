@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
   Card, 
@@ -111,8 +111,11 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+import { isValidUUID } from '@/lib/utils/validation';
+
 export default function InvoicesPage() {
   const params = useParams();
+  const router = useRouter();
   const workspace_id = params?.workspace_id as string;
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -123,6 +126,70 @@ export default function InvoicesPage() {
     const loadInvoices = async () => {
       try {
         setLoading(true);
+        
+        // 验证workspace_id是否为有效的UUID格式
+        if (!isValidUUID(workspace_id)) {
+          console.error(`Invalid workspace ID format: ${workspace_id}. Expected UUID format.`);
+          toast({
+            title: '无效的工作空间ID',
+            description: '系统将尝试获取您的默认工作空间',
+            variant: 'destructive',
+          });
+          
+          // 使用Supabase获取用户信息
+          const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+          const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+          const supabase = createClient(supabaseUrl, supabaseAnonKey);
+          
+          // 获取当前会话
+          const { data: { session } } = await supabase.auth.getSession();
+          if (!session) {
+            router.push('/login');
+            return;
+          }
+          
+          // 获取用户的默认工作空间
+          const { data: workspaces, error } = await supabase
+            .from('workspaces')
+            .select('id')
+            .eq('user_id', session.user.id)
+            .order('created_at', { ascending: true })
+            .limit(1);
+          
+          if (error || !workspaces || workspaces.length === 0) {
+            // 如果没有工作空间，调用create-workspace Edge Function
+            try {
+              const response = await fetch(
+                `${supabaseUrl}/functions/v1/create-workspace`,
+                {
+                  method: 'POST',
+                  headers: {
+                    Authorization: `Bearer ${session.access_token}`
+                  }
+                }
+              );
+              
+              if (response.ok) {
+                const data = await response.json();
+                if (data.workspace_id) {
+                  // 重定向到新创建的工作空间
+                  router.push(`/dashboard/${data.workspace_id}/invoices`);
+                  return;
+                }
+              }
+              // 如果创建失败，重定向到仪表板根目录
+              router.push('/dashboard');
+            } catch (err) {
+              console.error('Error creating workspace:', err);
+              router.push('/dashboard');
+            }
+          } else {
+            // 重定向到用户的默认工作空间
+            router.push(`/dashboard/${workspaces[0].id}/invoices`);
+          }
+          return;
+        }
+        
         const { data, error } = await supabase.rpc('get_invoices', {
           workspace_id_param: workspace_id
         });
