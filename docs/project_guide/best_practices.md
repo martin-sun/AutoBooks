@@ -98,7 +98,92 @@
 - 对于超长时间任务，考虑触发外部 Job Run
 - 示例：
   ```typescript
-  // ✅ 推荐：将长时间任务拆分
+  // ✅ 推荐：将长时间任务拆分为多个短任务
+  export async function handleLongProcess(req: Request) {
+    // 1. 执行初始验证和处理
+    const { userId, data } = await validateAndExtractData(req);
+    
+    // 2. 创建一个处理任务记录
+    const { data: task } = await supabaseAdmin
+      .from('processing_tasks')
+      .insert({ user_id: userId, status: 'pending', data })
+      .select()
+      .single();
+    
+    // 3. 将实际处理推送到队列中异步执行
+    await supabaseAdmin.functions.invoke('enqueue-task', {
+      body: { taskId: task.id }
+    });
+    
+    // 4. 立即返回响应，不等待处理完成
+    return new Response(JSON.stringify({ taskId: task.id }), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  ```
+
+## 前端开发规范与实施计划
+
+我们为 AutoBooks 前端制定了以下规范和实施计划，旨在提高代码质量、开发效率和可维护性。完整规范请参考 [frontend_best_practices.md](./frontend_best_practices.md)，这里提供核心实施步骤：
+
+### 代码组织重构
+
+1. **创建功能模块结构**
+   - [ ] 创建 `src/features/` 目录，按业务功能模块组织代码
+   - [ ] 将现有功能从 `src/app` 和 `src/components` 迁移到对应的功能模块
+   - [ ] 实施迁移优先级：发票(invoices) > 银行(banking) > 会计(accounting)
+
+2. **重构共享组件**
+   - [ ] 评估当前 `src/components/ui` 中的组件，确保设计一致性
+   - [ ] 将业务相关组件移至对应功能模块的 `components` 目录
+   - [ ] 保留并优化真正共享的UI组件
+
+### 通用钩子与状态管理
+
+1. **提取通用钩子**
+   - [ ] 实现 `useWorkspace()` - 处理工作区上下文和状态
+   - [ ] 实现 `useSupabase()` - 提供配置好的 Supabase 客户端
+   - [ ] 实现 `useAuth()` - 处理认证状态和用户信息
+   - [ ] 实现 `useFetch()` - 统一数据获取状态管理
+
+2. **状态管理优化**
+   - [ ] 优化 `useEffect` 依赖数组，避免不必要的重新渲染
+   - [ ] 使用 SWR 或 React Query 进行数据缓存和重新验证
+   - [ ] 实现通用的状态管理模式，包括 loading 和 error 处理
+
+### API 交互与数据获取
+
+1. **API 客户端重构**
+   - [ ] 为每个功能模块创建专用的 API 客户端
+   - [ ] 在 `features/[feature]/api.ts` 中集中定义 API 调用
+   - [ ] 实现统一的错误处理和响应转换
+
+2. **职责边界明确化**
+   - [ ] 前端直连 Supabase 处理简单 CRUD 和认证
+   - [ ] 使用 Edge Function 处理复杂业务逻辑和多表操作
+   - [ ] 创建清晰的决策树，指导开发者选择适当的数据访问方式
+
+### 表单处理优化
+
+1. **表单组件系统**
+   - [ ] 创建与 `react-hook-form` 和 `zod` 集成的通用表单组件
+   - [ ] 实现表单字段的统一布局和验证展示
+   - [ ] 提取动态表单字段数组的通用实现
+
+2. **表单验证统一**
+   - [ ] 将所有表单验证模式移至 `features/[feature]/schemas/` 目录
+   - [ ] 实现跨表单的通用验证逻辑和错误消息
+
+### 代码质量与性能
+
+1. **控制代码复杂度**
+   - [ ] 实施代码长度限制：文件 <500 行，函数 <50 行，组件 <300 行
+   - [ ] 使用 ESLint 规则强制执行代码风格和复杂度限制
+
+2. **性能优化**
+   - [ ] 实施组件懒加载和代码拆分
+   - [ ] 优化长列表渲染，使用虚拟化技术
+   - [ ] 实施性能监控和报告机制
   // 1. 创建任务记录
   const { data: task } = await supabaseAdmin
     .from('async_tasks')

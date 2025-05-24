@@ -138,7 +138,7 @@ The system architecture includes strategic extension points for future developme
 
 ## Project Structure
 
-- `.windsurf.json` — Project rules and conventions
+- `.windsurf/rules.json` — Project rules and conventions
 - `.gitignore` — Standard ignores for Node, Supabase, and IDEs
 - `supabase/migrations/` — All database schema migrations (including initial schema)
 - `supabase/config.toml` — Supabase local/remote project configuration
