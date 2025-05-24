@@ -1,0 +1,60 @@
+{
+  "Index": {
+    "title": "欢迎使用 AutoBooks",
+    "description": "专业记账系统",
+    "auth": {
+      "signIn": "登录",
+      "signUp": "注册"
+    }
+  },
+  "auth": {
+    "signIn": "登录",
+    "signUp": "注册",
+    "signOut": "退出登录",
+    "email": "电子邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "googleSignIn": "使用Google账号登录",
+    "noAccount": "还没有账号？",
+    "hasAccount": "已有账号？",
+    "signInWithGoogle": "使用 Google 登录"
+  },
+  "workspace": {
+    "title": "工作空间",
+    "create": "创建工作空间",
+    "switch": "切换工作空间",
+    "settings": "工作空间设置",
+    "members": "成员管理",
+    "types": {
+      "company": "公司",
+      "personal": "个人"
+    }
+  },
+  "navigation": {
+    "dashboard": "控制面板",
+    "chartOfAccounts": "会计科目表",
+    "accounts": "账户",
+    "transactions": "交易记录",
+    "reports": "报表",
+    "settings": "设置"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "search": "搜索",
+    "filter": "筛选",
+    "loading": "加载中...",
+    "noData": "暂无数据"
+  },
+  "dashboard": {
+    "welcome": "欢迎回来，{name}！",
+    "recentTransactions": "最近交易",
+    "viewAll": "查看全部",
+    "income": "收入",
+    "expenses": "支出",
+    "balance": "余额"
+  }
+}

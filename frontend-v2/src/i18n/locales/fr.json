@@ -1,0 +1,60 @@
+{
+  "Index": {
+    "title": "Bienvenue sur AutoBooks",
+    "description": "Système de comptabilité professionnelle",
+    "auth": {
+      "signIn": "Connexion",
+      "signUp": "S'inscrire"
+    }
+  },
+  "auth": {
+    "signIn": "Connexion",
+    "signUp": "Inscription",
+    "signOut": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "googleSignIn": "Se connecter avec Google",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "signInWithGoogle": "Se connecter avec Google"
+  },
+  "workspace": {
+    "title": "Espaces de travail",
+    "create": "Créer un espace de travail",
+    "switch": "Changer d'espace de travail",
+    "settings": "Paramètres de l'espace",
+    "members": "Membres",
+    "types": {
+      "company": "Entreprise",
+      "personal": "Personnel"
+    }
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "chartOfAccounts": "Plan comptable",
+    "accounts": "Comptes",
+    "transactions": "Transactions",
+    "reports": "Rapports",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "loading": "Chargement...",
+    "noData": "Aucune donnée disponible"
+  },
+  "dashboard": {
+    "welcome": "Bon retour, {name} !",
+    "recentTransactions": "Transactions récentes",
+    "viewAll": "Voir tout",
+    "income": "Revenu",
+    "expenses": "Dépenses",
+    "balance": "Solde"
+  }
+}

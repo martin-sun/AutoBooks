@@ -1,0 +1,60 @@
+{
+  "Index": {
+    "title": "Welcome to AutoBooks",
+    "description": "Professional Bookkeeping Solution",
+    "auth": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    }
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "googleSignIn": "Sign in with Google",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signInWithGoogle": "Sign in with Google"
+  },
+  "workspace": {
+    "title": "Workspaces",
+    "create": "Create Workspace",
+    "switch": "Switch Workspace",
+    "settings": "Workspace Settings",
+    "members": "Members",
+    "types": {
+      "company": "Company",
+      "personal": "Personal"
+    }
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "chartOfAccounts": "Chart of Accounts",
+    "accounts": "Accounts",
+    "transactions": "Transactions",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading...",
+    "noData": "No data available"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "recentTransactions": "Recent Transactions",
+    "viewAll": "View All",
+    "income": "Income",
+    "expenses": "Expenses",
+    "balance": "Balance"
+  }
+}
