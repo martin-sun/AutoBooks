@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "AutoBooks"
+  },
   "Index": {
     "title": "Welcome to AutoBooks",
     "description": "Professional Bookkeeping Solution",

@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "AutoBooks"
+  },
   "Index": {
     "title": "欢迎使用 AutoBooks",
     "description": "专业记账系统",
