@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoBooks - AI-Powered Bookkeeping Assistant for Accountants</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              secondary: "#7c3aed",
+              accent: "#06b6d4",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .float-animation {
+        animation: float 6s ease-in-out infinite;
+      }
+      .gradient-text {
+        background: linear-gradient(to right, #2563eb, #7c3aed, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .ai-glow {
+        box-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-chart-line text-white text-sm"></i>
+              </div>
+              <span class="text-2xl font-bold gradient-text">AutoBooks</span>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#features"
+              class="text-gray-700 hover:text-primary transition"
+              >Features</a
+            >
+            <a
+              href="#benefits"
+              class="text-gray-700 hover:text-primary transition"
+              >Benefits</a
+            >
+            <a
+              href="#pricing"
+              class="text-gray-700 hover:text-primary transition"
+              >Pricing</a
+            >
+            <a href="#" class="text-gray-700 hover:text-primary transition"
+              >Contact</a
+            >
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-full hover:bg-blue-600 transition"
+            >
+              Start Free Trial
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+      <div class="container mx-auto max-w-6xl">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div
+              class="inline-flex items-center bg-blue-50 px-4 py-2 rounded-full mb-6"
+            >
+              <span
+                class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"
+              ></span>
+              <span class="text-sm text-gray-700"
+                >AI-Powered • Built for Canadian Accountants</span
+              >
+            </div>
+            <h1
+              class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+            >
+              Serve More Clients,<br />
+              <span class="gradient-text">Earn More Revenue</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              AutoBooks is your AI-powered bookkeeping assistant that automates
+              repetitive tasks, so you can focus on high-value advisory services
+              and grow your practice.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="bg-primary text-white px-8 py-4 rounded-full hover:bg-blue-600 transition flex items-center justify-center group"
+              >
+                Start 3-Month Free Trial
+                <i
+                  class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"
+                ></i>
+              </button>
+              <button
+                class="border border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-primary hover:text-primary transition flex items-center justify-center"
+              >
+                <i class="fas fa-play-circle mr-2"></i>
+                Watch Demo
+              </button>
+            </div>
+            <div class="mt-8 flex items-center space-x-6 text-sm text-gray-600">
+              <div class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+                No credit card required
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="relative float-animation">
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-3xl"
+              ></div>
+              <div class="relative bg-white rounded-3xl shadow-2xl p-8 ai-glow">
+                <!-- AI Assistant Interface Mock -->
+                <div class="bg-gray-50 rounded-xl p-6 mb-4">
+                  <div class="flex items-start space-x-3">
+                    <div
+                      class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0"
+                    >
+                      <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1">
+                      <p class="text-sm text-gray-600 mb-2">AI Assistant</p>
+                      <p class="text-gray-800">
+                        I've categorized 847 transactions this month. GST/HST
+                        report is ready with $12,450 in input tax credits
+                        identified.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Stats Dashboard Mock -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-blue-50 rounded-lg p-4">
+                    <p class="text-sm text-gray-600 mb-1">Time Saved</p>
+                    <p class="text-2xl font-bold text-gray-900">18.5 hrs</p>
+                    <p class="text-xs text-green-600">This month</p>
+                  </div>
+                  <div class="bg-purple-50 rounded-lg p-4">
+                    <p class="text-sm text-gray-600 mb-1">Clients Served</p>
+                    <p class="text-2xl font-bold text-gray-900">47</p>
+                    <p class="text-xs text-green-600">↑ 32% increase</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-6">
+        <div
+          class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-gray-400"
+        >
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-shield-alt text-2xl"></i>
+            <span class="font-semibold">Bank-Level Security</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-maple-leaf text-2xl text-red-500"></i>
+            <span class="font-semibold">100% Canadian</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-clock text-2xl"></i>
+            <span class="font-semibold">99.9% Uptime</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-headset text-2xl"></i>
+            <span class="font-semibold">24/7 Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Automate the Mundane,
+            <span class="gradient-text">Amplify Your Expertise</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Let AI handle the repetitive bookkeeping tasks while you focus on
+            strategic advisory services
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition"
+          >
+            <div
+              class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-brain text-2xl text-primary"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              AI-Powered Categorization
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Automatically categorize transactions with 95% accuracy. Our AI
+              learns from your corrections and improves over time.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Smart receipt scanning & OCR
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Learns client-specific rules
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Bulk categorization in seconds
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition"
+          >
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-file-invoice text-2xl text-secondary"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              Canadian Tax Compliance
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Built specifically for Canadian tax requirements. Generate
+              CRA-ready reports with one click.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Automatic GST/HST calculations
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                T2125 & T2 report generation
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Provincial tax compliance
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition"
+          >
+            <div
+              class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-users text-2xl text-accent"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              Multi-Client Management
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Seamlessly switch between clients. Manage hundreds of books from a
+              single dashboard.
+            </p>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                One-click client switching
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Bulk operations across clients
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                Client portal access
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section
+      id="benefits"
+      class="py-20 px-6 bg-gradient-to-br from-blue-50 to-purple-50"
+    >
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Transform Your Practice,
+            <span class="gradient-text">Transform Your Life</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Real results from real accountants using AutoBooks
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div class="text-center">
+            <div class="text-5xl font-bold gradient-text mb-2">73%</div>
+            <p class="text-gray-700 font-semibold">Time Saved</p>
+            <p class="text-sm text-gray-600">on routine bookkeeping</p>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl font-bold gradient-text mb-2">2.5x</div>
+            <p class="text-gray-700 font-semibold">More Clients</p>
+            <p class="text-sm text-gray-600">served per accountant</p>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl font-bold gradient-text mb-2">45%</div>
+            <p class="text-gray-700 font-semibold">Revenue Increase</p>
+            <p class="text-sm text-gray-600">within first year</p>
+          </div>
+          <div class="text-center">
+            <div class="text-5xl font-bold gradient-text mb-2">98%</div>
+            <p class="text-gray-700 font-semibold">Client Satisfaction</p>
+            <p class="text-sm text-gray-600">faster turnaround times</p>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div
+          class="bg-white rounded-3xl shadow-xl p-8 md:p-12 max-w-4xl mx-auto"
+        >
+          <div class="flex items-start space-x-4 mb-6">
+            <img
+              src="https://via.placeholder.com/64"
+              alt="Sarah Chen"
+              class="w-16 h-16 rounded-full"
+            />
+            <div>
+              <p class="font-semibold text-gray-900">Sarah Chen, CPA</p>
+              <p class="text-gray-600">Chen & Associates Accounting</p>
+              <div class="flex text-yellow-400 mt-1">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <blockquote class="text-lg text-gray-700 italic">
+            "AutoBooks transformed my practice. I've gone from managing 30
+            clients to over 75, while actually working fewer hours. The AI
+            categorization alone saves me 20+ hours per week. My clients love
+            the faster turnaround, and I love focusing on advisory work instead
+            of data entry."
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 px-6 bg-white">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Get Started in <span class="gradient-text">3 Simple Steps</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Up and running in less than 15 minutes
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6"
+            >
+              1
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Connect Your Clients
+            </h3>
+            <p class="text-gray-600">
+              Import from QuickBooks, Excel, or connect bank feeds directly
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6"
+            >
+              2
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              AI Does the Heavy Lifting
+            </h3>
+            <p class="text-gray-600">
+              Transactions are automatically categorized and reconciled
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6"
+            >
+              3
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Focus on Advisory
+            </h3>
+            <p class="text-gray-600">
+              Spend your time on high-value services that grow your revenue
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6 bg-gray-50">
+      <div class="container mx-auto max-w-6xl">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Pricing That <span class="gradient-text">Grows With You</span>
+          </h2>
+          <p class="text-xl text-gray-600">Start free, scale as you grow</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Starter Plan -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+            <p class="text-gray-600 mb-6">Perfect for new practices</p>
+            <div class="mb-6">
+              <span class="text-4xl font-bold text-gray-900">$0</span>
+              <span class="text-gray-600">/month</span>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Up to 5 clients
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                AI categorization
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Basic reports
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Email support
+              </li>
+            </ul>
+            <button
+              class="w-full border border-gray-300 text-gray-700 py-3 rounded-full hover:border-primary hover:text-primary transition"
+            >
+              Start Free
+            </button>
+          </div>
+
+          <!-- Professional Plan -->
+          <div
+            class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 shadow-xl text-white relative"
+          >
+            <div
+              class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-semibold"
+            >
+              MOST POPULAR
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Professional</h3>
+            <p class="text-blue-100 mb-6">For growing practices</p>
+            <div class="mb-6">
+              <span class="text-4xl font-bold">$49</span>
+              <span class="text-blue-100">/month per 10 clients</span>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-white mr-3"></i>
+                Unlimited clients
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-white mr-3"></i>
+                Advanced AI features
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-white mr-3"></i>
+                All CRA reports
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-white mr-3"></i>
+                Priority support
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-white mr-3"></i>
+                Client portal
+              </li>
+            </ul>
+            <button
+              class="w-full bg-white text-primary py-3 rounded-full hover:bg-gray-100 transition font-semibold"
+            >
+              Start 3-Month Trial
+            </button>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+            <p class="text-gray-600 mb-6">For large firms</p>
+            <div class="mb-6">
+              <span class="text-4xl font-bold text-gray-900">Custom</span>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Everything in Pro
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Custom integrations
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                Dedicated account manager
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                On-premise option
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-green-500 mr-3"></i>
+                SLA guarantee
+              </li>
+            </ul>
+            <button
+              class="w-full border border-gray-300 text-gray-700 py-3 rounded-full hover:border-primary hover:text-primary transition"
+            >
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 bg-gradient-to-br from-primary to-secondary">
+      <div class="container mx-auto max-w-4xl text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Transform Your Practice?
+        </h2>
+        <p class="text-xl text-blue-100 mb-8">
+          Join thousands of Canadian accountants who are serving more clients
+          and earning more revenue with AutoBooks.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            class="bg-white text-primary px-8 py-4 rounded-full hover:bg-gray-100 transition font-semibold"
+          >
+            Start Your 3-Month Free Trial
+          </button>
+          <button
+            class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white/10 transition font-semibold"
+          >
+            Schedule a Demo
+          </button>
+        </div>
+        <p class="text-sm text-blue-100 mt-6">
+          No credit card required • Setup in 15 minutes • Cancel anytime
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 px-6">
+      <div class="container mx-auto max-w-6xl">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <div
+                class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-chart-line text-white text-sm"></i>
+              </div>
+              <span class="text-xl font-bold text-white">AutoBooks</span>
+            </div>
+            <p class="text-sm">
+              AI-powered bookkeeping assistant for Canadian accountants.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Product</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-white transition">Features</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Pricing</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Security</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Integrations</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Resources</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >API Reference</a
+                >
+              </li>
+              <li><a href="#" class="hover:text-white transition">Blog</a></li>
+              <li>
+                <a href="#" class="hover:text-white transition">Webinars</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-white mb-4">Company</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-white transition">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Contact</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-sm mb-4 md:mb-0">
+            © 2025 AutoBooks. Made with ❤️ in Canada 🇨🇦
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="#" class="hover:text-white transition"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Simple JavaScript for smooth scrolling -->
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      // Add some interactive animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-fade-in");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      // Observe all sections for fade-in animation
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Mobile menu toggle (if needed)
+      const mobileMenuButton = document.createElement("button");
+      mobileMenuButton.className = "md:hidden text-gray-700";
+      mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+
+      const nav = document.querySelector("nav .container > div");
+      nav.appendChild(mobileMenuButton);
+
+      mobileMenuButton.addEventListener("click", () => {
+        const menu = document.querySelector("nav .hidden.md\\:flex");
+        menu.classList.toggle("hidden");
+        menu.classList.toggle("absolute");
+        menu.classList.toggle("top-full");
+        menu.classList.toggle("left-0");
+        menu.classList.toggle("right-0");
+        menu.classList.toggle("bg-white");
+        menu.classList.toggle("flex-col");
+        menu.classList.toggle("p-6");
+        menu.classList.toggle("shadow-lg");
+      });
+
+      // Add animation classes
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.6s ease-out forwards;
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

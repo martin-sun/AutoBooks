@@ -7,6 +7,95 @@
       "signUp": "注册"
     }
   },
+  "Landing": {
+    "hero": {
+      "tagline": "AI 驱动 • 专为加拿大会计师打造",
+      "title": "服务更多客户，\n      <1>增加更多收入</1>",
+      "description": "AutoBooks 是您的人工智能记账助手，可自动执行重复性任务，让您专注于高价值的咨询服务并发展您的业务。",
+      "ctaPrimary": "开始 3 个月免费试用",
+      "ctaSecondary": "观看演示",
+      "noCreditCard": "无需信用卡"
+    },
+    "features": {
+      "title": "自动化繁琐工作，专注于重要事务",
+      "subtitle": "减少数据输入时间，增加为客户提供建议的时间，使用我们的人工智能记账助手。",
+      "aiAssistant": {
+        "title": "AI 助手",
+        "description": "自动分类交易、对账账户，并以 AI 的精确度准备财务报表。"
+      },
+      "reports": {
+        "title": "实时报告",
+        "description": "使用实时数据和可自定义模板，在几秒钟内生成财务报告。"
+      },
+      "collaboration": {
+        "title": "客户协作",
+        "description": "通过专业门户安全地与客户共享财务数据和报告。"
+      }
+    },
+    "pricing": {
+      "title": "与您共同成长的<1>定价方案</1>",
+      "subtitle": "选择适合您业务需求的计划。无隐藏费用，随时取消。",
+      "starter": {
+        "name": "入门版",
+        "tagline": "适合新成立的事务所",
+        "price": "¥299",
+        "period": "/月",
+        "features": [
+          "最多 5 个客户",
+          "基础报告",
+          "电子邮件支持",
+          "银行对账"
+        ],
+        "cta": "开始使用"
+      },
+      "professional": {
+        "name": "专业版",
+        "tagline": "适合发展中的事务所",
+        "price": "¥599",
+        "period": "/月",
+        "features": [
+          "最多 20 个客户",
+          "高级报告",
+          "优先支持",
+          "客户门户",
+          "税务准备"
+        ],
+        "cta": "免费试用",
+        "popular": "最受欢迎"
+      },
+      "enterprise": {
+        "name": "企业版",
+        "tagline": "适合成熟的事务所",
+        "price": "定制",
+        "period": "",
+        "features": [
+          "无限制客户数量",
+          "自定义报告",
+          "专属客户经理",
+          "API 访问",
+          "白标解决方案"
+        ],
+        "cta": "联系销售"
+      }
+    },
+    "cta": {
+      "title": "准备好改变您的事务所了吗？",
+      "subtitle": "加入数百家信任 AutoBooks 来简化其记账流程的会计专业人士。",
+      "ctaPrimary": "开始免费试用",
+      "ctaSecondary": "预约演示"
+    },
+    "navigation": {
+      "features": "功能",
+      "benefits": "优势",
+      "pricing": "定价",
+      "contact": "联系我们"
+    },
+    "language": {
+      "en": "English",
+      "fr": "Français",
+      "zh": "中文"
+    }
+  },
   "auth": {
     "signIn": "登录",
     "signUp": "注册",

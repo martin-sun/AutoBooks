@@ -7,6 +7,95 @@
       "signUp": "Sign Up"
     }
   },
+  "Landing": {
+    "hero": {
+      "tagline": "AI-Powered • Built for Canadian Accountants",
+      "title": "Serve More Clients,\n      <1>Earn More Revenue</1>",
+      "description": "AutoBooks is your AI-powered bookkeeping assistant that automates repetitive tasks, so you can focus on high-value advisory services and grow your practice.",
+      "ctaPrimary": "Start 3-Month Free Trial",
+      "ctaSecondary": "Watch Demo",
+      "noCreditCard": "No credit card required"
+    },
+    "features": {
+      "title": "Automate the Mundane, Focus on What Matters",
+      "subtitle": "Spend less time on data entry and more time advising your clients with our AI-powered bookkeeping assistant.",
+      "aiAssistant": {
+        "title": "AI Assistant",
+        "description": "Automatically categorize transactions, reconcile accounts, and prepare financial statements with AI precision."
+      },
+      "reports": {
+        "title": "Real-time Reports",
+        "description": "Generate financial reports in seconds with real-time data and customizable templates."
+      },
+      "collaboration": {
+        "title": "Client Collaboration",
+        "description": "Securely share financial data and reports with your clients through a professional portal."
+      }
+    },
+    "pricing": {
+      "title": "Pricing That <1>Grows With You</1>",
+      "subtitle": "Choose the plan that fits your practice's needs. No hidden fees, cancel anytime.",
+      "starter": {
+        "name": "Starter",
+        "tagline": "Perfect for new practices",
+        "price": "$49",
+        "period": "/month",
+        "features": [
+          "Up to 5 clients",
+          "Basic reports",
+          "Email support",
+          "Bank reconciliation"
+        ],
+        "cta": "Get Started"
+      },
+      "professional": {
+        "name": "Professional",
+        "tagline": "For growing practices",
+        "price": "$99",
+        "period": "/month",
+        "features": [
+          "Up to 20 clients",
+          "Advanced reports",
+          "Priority support",
+          "Client portal",
+          "Tax preparation"
+        ],
+        "cta": "Start Free Trial",
+        "popular": "Most Popular"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "tagline": "For established firms",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Unlimited clients",
+          "Custom reporting",
+          "Dedicated account manager",
+          "API access",
+          "White-labeling"
+        ],
+        "cta": "Contact Sales"
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Practice?",
+      "subtitle": "Join hundreds of accounting professionals who trust AutoBooks to streamline their bookkeeping process.",
+      "ctaPrimary": "Start Your Free Trial",
+      "ctaSecondary": "Schedule a Demo"
+    },
+    "navigation": {
+      "features": "Features",
+      "benefits": "Benefits",
+      "pricing": "Pricing",
+      "contact": "Contact"
+    },
+    "language": {
+      "en": "English",
+      "fr": "Français",
+      "zh": "中文"
+    }
+  },
   "auth": {
     "signIn": "Sign In",
     "signUp": "Sign Up",

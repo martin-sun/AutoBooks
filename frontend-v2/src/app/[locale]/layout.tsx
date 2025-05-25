@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { locales } from '@/i18n/request';
@@ -16,6 +16,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: 'swap',
   variable: "--font-geist-mono",
+});
+
+// 添加 Roboto 字体 (Material Design 标准字体)
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: 'swap',
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -48,9 +56,10 @@ export default async function LocaleLayout(props: Props) {
   // Get timezone from Intl API
   const timeZone = 'UTC'; // Using fixed timezone to avoid hydration issues
   
+  
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} font-sans antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider
           locale={locale}
           messages={messages}

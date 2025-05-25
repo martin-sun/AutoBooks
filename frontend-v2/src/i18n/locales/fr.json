@@ -7,6 +7,95 @@
       "signUp": "S'inscrire"
     }
   },
+  "Landing": {
+    "hero": {
+      "tagline": "Propulsé par l'IA • Conçu pour les comptables canadiens",
+      "title": "Servez plus de clients,\n      <1>Gagnez plus de revenus</1>",
+      "description": "AutoBooks est votre assistant de comptabilité alimenté par l'IA qui automatise les tâches répétitives, vous permettant ainsi de vous concentrer sur des services consultatifs à forte valeur ajoutée et de développer votre cabinet.",
+      "ctaPrimary": "Essai gratuit de 3 mois",
+      "ctaSecondary": "Voir la démo",
+      "noCreditCard": "Aucune carte de crédit requise"
+    },
+    "features": {
+      "title": "Automatisez les tâches banales, concentrez-vous sur l'essentiel",
+      "subtitle": "Passez moins de temps sur la saisie des données et plus de temps à conseiller vos clients avec notre assistant de comptabilité alimenté par l'IA.",
+      "aiAssistant": {
+        "title": "Assistant IA",
+        "description": "Catégorisez automatiquement les transactions, rapprochez les comptes et préparez les états financiers avec la précision de l'IA."
+      },
+      "reports": {
+        "title": "Rapports en temps réel",
+        "description": "Générez des rapports financiers en quelques secondes avec des données en temps réel et des modèles personnalisables."
+      },
+      "collaboration": {
+        "title": "Collaboration client",
+        "description": "Partagez en toute sécurité les données financières et les rapports avec vos clients via un portail professionnel."
+      }
+    },
+    "pricing": {
+      "title": "Des tarifs qui <1>évoluent avec vous</1>",
+      "subtitle": "Choisissez la formule qui correspond aux besoins de votre cabinet. Pas de frais cachés, annulation à tout moment.",
+      "starter": {
+        "name": "Débutant",
+        "tagline": "Parfait pour les nouveaux cabinets",
+        "price": "49 €",
+        "period": "/mois",
+        "features": [
+          "Jusqu'à 5 clients",
+          "Rapports de base",
+          "Support par email",
+          "Réconciliation bancaire"
+        ],
+        "cta": "Commencer"
+      },
+      "professional": {
+        "name": "Professionnel",
+        "tagline": "Pour les cabinets en croissance",
+        "price": "99 €",
+        "period": "/mois",
+        "features": [
+          "Jusqu'à 20 clients",
+          "Rapports avancés",
+          "Support prioritaire",
+          "Portail client",
+          "Préparation fiscale"
+        ],
+        "cta": "Essai gratuit",
+        "popular": "Le plus populaire"
+      },
+      "enterprise": {
+        "name": "Entreprise",
+        "tagline": "Pour les cabinets établis",
+        "price": "Sur mesure",
+        "period": "",
+        "features": [
+          "Nombre illimité de clients",
+          "Rapports personnalisés",
+          "Gestionnaire de compte dédié",
+          "Accès API",
+          "Marque blanche"
+        ],
+        "cta": "Contacter les ventes"
+      }
+    },
+    "cta": {
+      "title": "Prêt à transformer votre cabinet ?",
+      "subtitle": "Rejoignez les centaines de professionnels comptables qui font confiance à AutoBooks pour rationaliser leur processus de comptabilité.",
+      "ctaPrimary": "Commencer l'essai gratuit",
+      "ctaSecondary": "Planifier une démo"
+    },
+    "navigation": {
+      "features": "Fonctionnalités",
+      "benefits": "Avantages",
+      "pricing": "Tarifs",
+      "contact": "Contact"
+    },
+    "language": {
+      "en": "English",
+      "fr": "Français",
+      "zh": "中文"
+    }
+  },
   "auth": {
     "signIn": "Connexion",
     "signUp": "Inscription",
