@@ -1,0 +1,9 @@
+export { Navbar } from './Navbar';
+export { HeroSection } from './HeroSection';
+export { TrustIndicators } from './TrustIndicators';
+export { FeaturesSection } from './FeaturesSection';
+export { BenefitsSection } from './BenefitsSection';
+export { HowItWorks } from './HowItWorks';
+export { PricingSection } from './PricingSection';
+export { CtaSection } from './CtaSection';
+export { Footer } from './Footer';
