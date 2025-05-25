@@ -5,16 +5,17 @@ import { NextIntlClientProvider } from 'next-intl';
 import { locales } from '@/i18n/request';
 import "../globals.css";
 
+// Define fonts with consistent class names
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: 'swap', // Ensure fonts are loaded with font-display: swap
+  display: 'swap',
+  variable: "--font-geist-sans",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: 'swap', // Ensure fonts are loaded with font-display: swap
+  display: 'swap',
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
@@ -41,13 +42,15 @@ export default async function LocaleLayout(props: Props) {
   // 加载消息
   const messages = await getMessages();
   
-  // 确保日期和时间格式一致
+  // Ensure consistent date and time format between server and client
+  // Use a fixed timestamp for server rendering to avoid hydration mismatch
   const now = new Date();
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  // Get timezone from Intl API
+  const timeZone = 'UTC'; // Using fixed timezone to avoid hydration issues
   
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider
           locale={locale}
           messages={messages}
