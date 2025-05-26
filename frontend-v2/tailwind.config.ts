@@ -85,12 +85,13 @@ export default withMT({
           200: "#90caf9",
           300: "#64b5f6",
           400: "#42a5f5",
-          500: "#2196f3",
+          500: "#2563eb", // Updated to match mockup
           600: "#1e88e5",
           700: "#1976d2",
           800: "#1565c0",
           900: "#0d47a1",
           950: "#0a2f6d",
+          DEFAULT: "#2563eb", // Added for convenience
         },
         secondary: {
           50: "#fce4ec",
@@ -98,12 +99,27 @@ export default withMT({
           200: "#f48fb1",
           300: "#f06292",
           400: "#ec407a",
-          500: "#e91e63",
+          500: "#7c3aed", // Updated to match mockup
           600: "#d81b60",
           700: "#c2185b",
           800: "#ad1457",
           900: "#880e4f",
           950: "#560a30",
+          DEFAULT: "#7c3aed", // Added for convenience
+        },
+        accent: {
+          50: "#e0f7fa",
+          100: "#b2ebf2",
+          200: "#80deea",
+          300: "#4dd0e1",
+          400: "#26c6da",
+          500: "#06b6d4", // From mockup
+          600: "#00acc1",
+          700: "#0097a7",
+          800: "#00838f",
+          900: "#006064",
+          950: "#004d40",
+          DEFAULT: "#06b6d4", // Added for convenience
         },
       },
       fontFamily: {

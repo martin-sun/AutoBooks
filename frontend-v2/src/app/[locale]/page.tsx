@@ -1,13 +1,43 @@
-import Link from 'next/link';
+import { Navigation } from "@/components/landing/Navigation";
+import { HeroSection } from "@/components/landing/HeroSection";
+import { TrustIndicators } from "@/components/landing/TrustIndicators";
+import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { BenefitsSection } from "@/components/landing/BenefitsSection";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { PricingSection } from "@/components/landing/PricingSection";
+import { CTASection } from "@/components/landing/CTASection";
+import { Footer } from "@/components/landing/Footer";
 
-// 使用客户端组件封装来处理翻译
-import { HomePageContent } from '@/components/home/HomePageContent';
-
-// 这是一个静态的服务器组件，不会导致params.locale错误
+// 这是一个服务器组件，不需要 'use client' 指令
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-24">
-      <HomePageContent />
-    </main>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <Navigation />
+      
+      {/* Hero Section */}
+      <HeroSection />
+      
+      {/* Trust Indicators */}
+      <TrustIndicators />
+      
+      {/* Features Section */}
+      <FeaturesSection />
+      
+      {/* Benefits Section */}
+      <BenefitsSection />
+      
+      {/* How It Works Section */}
+      <HowItWorks />
+      
+      {/* Pricing Section */}
+      <PricingSection />
+      
+      {/* Call to Action Section */}
+      <CTASection />
+      
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }
