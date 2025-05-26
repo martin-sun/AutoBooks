@@ -13,7 +13,8 @@
   "Landing": {
     "hero": {
       "tagline": "Propulsé par l'IA • Conçu pour les comptables canadiens",
-      "title": "Servez plus de clients,\n      <1>Gagnez plus de revenus</1>",
+      "titlePrefix": "Servez plus de clients,",
+      "titleHighlight": "Gagnez plus de revenus",
       "description": "AutoBooks est votre assistant de comptabilité alimenté par l'IA qui automatise les tâches répétitives, vous permettant ainsi de vous concentrer sur des services consultatifs à forte valeur ajoutée et de développer votre cabinet.",
       "ctaPrimary": "Essai gratuit de 3 mois",
       "ctaSecondary": "Voir la démo",
@@ -24,7 +25,21 @@
       "subtitle": "Passez moins de temps sur la saisie des données et plus de temps à conseiller vos clients avec notre assistant de comptabilité alimenté par l'IA.",
       "aiAssistant": {
         "title": "Assistant IA",
-        "description": "Catégorisez automatiquement les transactions, rapprochez les comptes et préparez les états financiers avec la précision de l'IA."
+        "description": "Catégorisez automatiquement les transactions, rapprochez les comptes et préparez les états financiers avec la précision de l'IA.",
+        "features": [
+          "Numérisation intelligente des reçus et OCR",
+          "Apprend les règles spécifiques aux clients",
+          "Catégorisation en masse en quelques secondes"
+        ]
+      },
+      "taxCompliance": {
+        "title": "Conformité fiscale canadienne",
+        "description": "Conçu spécifiquement pour les exigences fiscales canadiennes. Générez des rapports prêts pour l'ARC en un seul clic.",
+        "features": [
+          "Calculs automatiques de la TPS/TVH",
+          "Génération de rapports T2125 et T2",
+          "Conformité fiscale provinciale"
+        ]
       },
       "reports": {
         "title": "Rapports en temps réel",
@@ -32,12 +47,61 @@
       },
       "collaboration": {
         "title": "Collaboration client",
-        "description": "Partagez en toute sécurité les données financières et les rapports avec vos clients via un portail professionnel."
+        "description": "Partagez en toute sécurité les données financières et les rapports avec vos clients via un portail professionnel.",
+        "features": [
+          "Changement de client en un clic",
+          "Opérations en masse sur plusieurs clients",
+          "Accès au portail client"
+        ]
       }
     },
     "pricing": {
-      "title": "Des tarifs qui <1>évoluent avec vous</1>",
+      "titlePrefix": "Des tarifs qui",
+      "titleHighlight": "évoluent avec vous",
       "subtitle": "Choisissez la formule qui correspond aux besoins de votre cabinet. Pas de frais cachés, annulation à tout moment.",
+      "plans": {
+        "starter": {
+          "name": "Débutant",
+          "description": "Parfait pour les nouveaux cabinets",
+          "price": "0€",
+          "period": "/mois",
+          "features": {
+            "clients": "Jusqu'à 5 clients",
+            "ai": "Catégorisation IA",
+            "reports": "Rapports de base",
+            "support": "Support par email"
+          },
+          "cta": "Commencer"
+        },
+        "professional": {
+          "name": "Professionnel",
+          "description": "Pour les cabinets en croissance",
+          "price": "49€",
+          "period": "/mois pour 10 clients",
+          "badge": "Le plus populaire",
+          "features": {
+            "clients": "Clients illimités",
+            "ai": "Fonctionnalités IA avancées",
+            "reports": "Tous les rapports CRA",
+            "support": "Support prioritaire",
+            "portal": "Portail client"
+          },
+          "cta": "Essai de 3 mois"
+        },
+        "enterprise": {
+          "name": "Entreprise",
+          "description": "Pour les grands cabinets",
+          "price": "Sur mesure",
+          "features": {
+            "everything": "Tout ce qui est inclus dans Pro",
+            "integrations": "Intégrations personnalisées",
+            "manager": "Gestionnaire de compte dédié",
+            "onpremise": "Option sur site",
+            "sla": "Garantie SLA"
+          },
+          "cta": "Contacter les ventes"
+        }
+      },
       "starter": {
         "name": "Débutant",
         "tagline": "Parfait pour les nouveaux cabinets",
@@ -83,9 +147,10 @@
     },
     "cta": {
       "title": "Prêt à transformer votre cabinet ?",
-      "subtitle": "Rejoignez les centaines de professionnels comptables qui font confiance à AutoBooks pour rationaliser leur processus de comptabilité.",
-      "ctaPrimary": "Commencer l'essai gratuit",
-      "ctaSecondary": "Planifier une démo"
+      "subtitle": "Rejoignez les milliers de comptables canadiens qui utilisent AutoBooks pour servir plus de clients et générer plus de revenus.",
+      "trial": "Commencez votre essai gratuit de 3 mois",
+      "demo": "Planifier une démo",
+      "note": "Pas de carte de crédit • Configuration en 15 minutes • Annulez à tout moment"
     },
     "navigation": {
       "features": "Fonctionnalités",
@@ -97,6 +162,100 @@
       "en": "English",
       "fr": "Français",
       "zh": "中文"
+    },
+    "trustIndicators": {
+      "security": "Sécurité de niveau bancaire",
+      "canadian": "100% canadien",
+      "uptime": "Disponibilité de 99,9%",
+      "support": "Support 24/7"
+    },
+    "howItWorks": {
+      "title": "3 étapes simples pour commencer",
+      "subtitle": "Configuration en moins de 15 minutes",
+      "steps": {
+        "connect": {
+          "title": "Connectez vos clients",
+          "description": "Importez depuis QuickBooks, Excel ou connectez directement les données bancaires"
+        },
+        "ai": {
+          "title": "L'IA fait le travail lourd",
+          "description": "Catégorisation automatique des transactions et rapprochement bancaire"
+        },
+        "focus": {
+          "title": "Concentrez-vous sur le conseil",
+          "description": "Consacrez votre temps aux services à forte valeur ajoutée qui augmentent vos revenus"
+        }
+      }
+    },
+    "benefits": {
+      "title": "Transformez votre cabinet, transformez votre vie",
+      "subtitle": "Résultats réels des comptables utilisant AutoBooks",
+      "stats": {
+        "timeSaved": {
+          "value": "73%",
+          "label": "Temps économisé",
+          "description": "sur la comptabilité de routine"
+        },
+        "moreClients": {
+          "value": "2,5x",
+          "label": "Plus de clients",
+          "description": "par comptable"
+        },
+        "revenueIncrease": {
+          "value": "45%",
+          "label": "Augmentation des revenus",
+          "description": "dans la première année"
+        },
+        "clientSatisfaction": {
+          "value": "98%",
+          "label": "Satisfaction client",
+          "description": "délais de traitement plus rapides"
+        }
+      },
+      "testimonial": {
+        "name": "Sarah Chen, CPA",
+        "company": "Chen Accounting Services",
+        "quote": "AutoBooks a complètement transformé mon cabinet. Je suis passée de 30 clients à plus de 75, tout en travaillant moins d'heures. La catégorisation IA seule me fait gagner plus de 20 heures par semaine. Mes clients adorent les délais de traitement plus rapides, et j'adore me concentrer sur le conseil plutôt que sur la saisie de données."
+      }
+    },
+    "footer": {
+      "description": "Assistant de comptabilité propulsé par l'IA pour les comptables canadiens.",
+      "sections": {
+        "product": {
+          "title": "Produit",
+          "links": {
+            "features": "Fonctionnalités",
+            "pricing": "Tarifs",
+            "security": "Sécurité",
+            "integrations": "Intégrations"
+          }
+        },
+        "resources": {
+          "title": "Ressources",
+          "links": {
+            "documentation": "Documentation",
+            "api": "Référence API",
+            "blog": "Blog",
+            "webinars": "Webinaires"
+          }
+        },
+        "company": {
+          "title": "Entreprise",
+          "links": {
+            "about": "À propos de nous",
+            "contact": "Contact",
+            "privacy": "Politique de confidentialité",
+            "terms": "Conditions d'utilisation"
+          }
+        }
+      },
+      "copyright": "© 2025 AutoBooks Inc. Tous droits réservés.",
+      "socialMedia": {
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "youtube": "YouTube"
+      }
     }
   },
   "auth": {

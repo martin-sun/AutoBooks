@@ -13,18 +13,33 @@
   "Landing": {
     "hero": {
       "tagline": "AI 驱动 • 专为加拿大会计师打造",
-      "title": "服务更多客户，\n      <1>增加更多收入</1>",
+      "titlePrefix": "服务更多客户，",
+      "titleHighlight": "增加更多收入",
       "description": "AutoBooks 是您的人工智能记账助手，可自动执行重复性任务，让您专注于高价值的咨询服务并发展您的业务。",
       "ctaPrimary": "开始 3 个月免费试用",
       "ctaSecondary": "观看演示",
       "noCreditCard": "无需信用卡"
     },
     "features": {
-      "title": "自动化繁琐工作，专注于重要事务",
+      "title": "自动化繁琐工作, 专注于重要事务",
       "subtitle": "减少数据输入时间，增加为客户提供建议的时间，使用我们的人工智能记账助手。",
       "aiAssistant": {
         "title": "AI 助手",
-        "description": "自动分类交易、对账账户，并以 AI 的精确度准备财务报表。"
+        "description": "自动分类交易、对账账户，并以 AI 的精确度准备财务报表。",
+        "features": [
+          "智能收据扫描和 OCR",
+          "学习客户特定规则",
+          "批量分类在几秒内完成"
+        ]
+      },
+      "taxCompliance": {
+        "title": "加拿大税务合规",
+        "description": "专为加拿大税务要求打造。一键生成 CRA 就绪的报告。",
+        "features": [
+          "自动 GST/HST 计算",
+          "T2125 和 T2 报表生成",
+          "省级税务合规"
+        ]
       },
       "reports": {
         "title": "实时报告",
@@ -32,23 +47,63 @@
       },
       "collaboration": {
         "title": "客户协作",
-        "description": "通过专业门户安全地与客户共享财务数据和报告。"
+        "description": "通过专业门户安全地与客户共享财务数据和报告。",
+        "features": ["一键切换客户", "跨客户批量操作", "客户门户访问"]
       }
     },
     "pricing": {
-      "title": "与您共同成长的<1>定价方案</1>",
+      "titlePrefix": "与您共同成长的",
+      "titleHighlight": "定价方案",
       "subtitle": "选择适合您业务需求的计划。无隐藏费用，随时取消。",
+      "plans": {
+        "starter": {
+          "name": "入门版",
+          "description": "适合新成立的事务所",
+          "price": "￥0",
+          "period": "/月",
+          "features": {
+            "clients": "最多 5 个客户",
+            "ai": "AI 分类",
+            "reports": "基础报告",
+            "support": "电子邮件支持"
+          },
+          "cta": "免费开始"
+        },
+        "professional": {
+          "name": "专业版",
+          "description": "适合成长中的事务所",
+          "price": "￥299",
+          "period": "/月每10个客户",
+          "badge": "最受欢迎",
+          "features": {
+            "clients": "无限客户",
+            "ai": "高级AI功能",
+            "reports": "所有CRA报告",
+            "support": "优先支持",
+            "portal": "客户门户"
+          },
+          "cta": "3个月免费试用"
+        },
+        "enterprise": {
+          "name": "企业版",
+          "description": "适合大型事务所",
+          "price": "定制价格",
+          "features": {
+            "everything": "包含专业版所有功能",
+            "integrations": "自定义集成",
+            "manager": "专属客户经理",
+            "onpremise": "本地部署选项",
+            "sla": "SLA保障"
+          },
+          "cta": "联系销售"
+        }
+      },
       "starter": {
         "name": "入门版",
         "tagline": "适合新成立的事务所",
         "price": "¥299",
         "period": "/月",
-        "features": [
-          "最多 5 个客户",
-          "基础报告",
-          "电子邮件支持",
-          "银行对账"
-        ],
+        "features": ["最多 5 个客户", "基础报告", "电子邮件支持", "银行对账"],
         "cta": "开始使用"
       },
       "professional": {
@@ -83,9 +138,10 @@
     },
     "cta": {
       "title": "准备好改变您的事务所了吗？",
-      "subtitle": "加入数百家信任 AutoBooks 来简化其记账流程的会计专业人士。",
-      "ctaPrimary": "开始免费试用",
-      "ctaSecondary": "预约演示"
+      "subtitle": "加入数千名使用 AutoBooks 服务更多客户并获得更多收入的加拿大会计师。",
+      "trial": "开始您的3个月免费试用",
+      "demo": "预约演示",
+      "note": "无需信用卡 • 15分钟内设置 • 随时取消"
     },
     "navigation": {
       "features": "功能",
@@ -97,6 +153,110 @@
       "en": "English",
       "fr": "Français",
       "zh": "中文"
+    },
+    "footer": {
+      "description": "为加拿大会计师打造的AI驱动记账助手。",
+      "sections": {
+        "product": {
+          "title": "产品",
+          "links": {
+            "features": "功能",
+            "pricing": "价格",
+            "security": "安全",
+            "integrations": "集成"
+          }
+        },
+        "resources": {
+          "title": "资源",
+          "links": {
+            "documentation": "文档",
+            "api": "API参考",
+            "blog": "博客",
+            "webinars": "网络研讨会"
+          }
+        },
+        "company": {
+          "title": "公司",
+          "links": {
+            "about": "关于我们",
+            "careers": "招聘",
+            "press": "新闻",
+            "contact": "联系我们",
+            "privacy": "隐私政策",
+            "terms": "使用条款"
+          }
+        },
+        "legal": {
+          "title": "法律",
+          "links": {
+            "privacy": "隐私政策",
+            "terms": "使用条款",
+            "security": "安全政策"
+          }
+        }
+      },
+      "copyright": "© 2025 AutoBooks Inc. 保留所有权利。",
+      "socialMedia": {
+        "twitter": "Twitter",
+        "linkedin": "LinkedIn",
+        "facebook": "Facebook",
+        "youtube": "YouTube"
+      }
+    },
+    "trustIndicators": {
+      "security": "银行级安全",
+      "canadian": "100% 加拿大制造",
+      "uptime": "99.9% 在线率",
+      "support": "24/7 全天候支持"
+    },
+    "howItWorks": {
+      "title": "3个简单步骤即可开始",
+      "subtitle": "在不到15分钟内完成设置",
+      "steps": {
+        "connect": {
+          "title": "连接您的客户",
+          "description": "从 QuickBooks、Excel 导入或直接连接银行数据"
+        },
+        "ai": {
+          "title": "AI 完成繁重工作",
+          "description": "交易自动分类和对账"
+        },
+        "focus": {
+          "title": "专注于咨询",
+          "description": "将您的时间用于增加收入的高价值服务"
+        }
+      }
+    },
+    "benefits": {
+      "title": "改变您的业务, 改变您的生活",
+      "subtitle": "使用 AutoBooks 的会计师的真实成果",
+      "stats": {
+        "timeSaved": {
+          "value": "73%",
+          "label": "节省时间",
+          "description": "用于常规记账"
+        },
+        "moreClients": {
+          "value": "2.5倍",
+          "label": "更多客户",
+          "description": "每位会计师服务"
+        },
+        "revenueIncrease": {
+          "value": "45%",
+          "label": "收入增长",
+          "description": "第一年内"
+        },
+        "clientSatisfaction": {
+          "value": "98%",
+          "label": "客户满意度",
+          "description": "更快的周转时间"
+        }
+      },
+      "testimonial": {
+        "name": "陈莎拉，注册会计师",
+        "company": "陈氏会计事务所",
+        "quote": "AutoBooks 彻底改变了我的业务。我从管理 30 个客户增加到 75 个以上，同时实际工作时间更少。仅 AI 分类就为我每周节省 20 多个小时。我的客户喜欢更快的周转时间，而我喜欢专注于咨询工作而不是数据录入。"
+      }
     }
   },
   "auth": {

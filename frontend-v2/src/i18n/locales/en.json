@@ -25,7 +25,21 @@
       "subtitle": "Spend less time on data entry and more time advising your clients with our AI-powered bookkeeping assistant.",
       "aiAssistant": {
         "title": "AI Assistant",
-        "description": "Automatically categorize transactions, reconcile accounts, and prepare financial statements with AI precision."
+        "description": "Automatically categorize transactions, reconcile accounts, and prepare financial statements with AI precision.",
+        "features": [
+          "Smart receipt scanning & OCR",
+          "Learns client-specific rules",
+          "Bulk categorization in seconds"
+        ]
+      },
+      "taxCompliance": {
+        "title": "Canadian Tax Compliance",
+        "description": "Built specifically for Canadian tax requirements. Generate CRA-ready reports with one click.",
+        "features": [
+          "Automatic GST/HST calculations",
+          "T2125 & T2 report generation",
+          "Provincial tax compliance"
+        ]
       },
       "reports": {
         "title": "Real-time Reports",
@@ -33,7 +47,12 @@
       },
       "collaboration": {
         "title": "Client Collaboration",
-        "description": "Securely share financial data and reports with your clients through a professional portal."
+        "description": "Securely share financial data and reports with your clients through a professional portal.",
+        "features": [
+          "One-click client switching",
+          "Bulk operations across clients",
+          "Client portal access"
+        ]
       }
     },
     "benefits": {

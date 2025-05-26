@@ -45,21 +45,21 @@ export function FeaturesSection() {
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Smart receipt scanning & OCR
+                {t("aiAssistant.features.0")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Learns client-specific rules
+                {t("aiAssistant.features.1")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Bulk categorization in seconds
+                {t("aiAssistant.features.2")}
               </li>
             </ul>
           </div>
@@ -73,11 +73,10 @@ export function FeaturesSection() {
               />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Canadian Tax Compliance
+              {t("taxCompliance.title")}
             </h3>
             <p className="text-gray-600 mb-6">
-              Built specifically for Canadian tax requirements. Generate
-              CRA-ready reports with one click.
+              {t("taxCompliance.description")}
             </p>
             <ul className="space-y-3 text-gray-600">
               <li className="flex items-start">
@@ -85,21 +84,21 @@ export function FeaturesSection() {
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Automatic GST/HST calculations
+                {t("taxCompliance.features.0")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                T2125 & T2 report generation
+                {t("taxCompliance.features.1")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Provincial tax compliance
+                {t("taxCompliance.features.2")}
               </li>
             </ul>
           </div>
@@ -124,21 +123,21 @@ export function FeaturesSection() {
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                One-click client switching
+                {t("collaboration.features.0")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Bulk operations across clients
+                {t("collaboration.features.1")}
               </li>
               <li className="flex items-start">
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 mr-3 mt-1"
                 />
-                Client portal access
+                {t("collaboration.features.2")}
               </li>
             </ul>
           </div>
