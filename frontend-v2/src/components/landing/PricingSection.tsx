@@ -1,6 +1,13 @@
 'use client';
 
 import { useLocale } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faDollarSign,
+  faBuildingColumns,
+  faRocket
+} from '@fortawesome/free-solid-svg-icons';
 
 export function PricingSection() {
   const currentLocale = useLocale();
@@ -27,6 +34,9 @@ export function PricingSection() {
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Starter Plan */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="flex items-center justify-center h-16 w-16 bg-primary/10 rounded-lg mb-6">
+              <FontAwesomeIcon icon={faDollarSign} className="h-8 w-8 text-primary" />
+            </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {currentLocale === 'zh' ? '入门版' : 
                currentLocale === 'fr' ? 'Débutant' : 
@@ -47,25 +57,25 @@ export function PricingSection() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '最多 5 个客户' : 
                  currentLocale === 'fr' ? 'Jusqu\'\u00e0 5 clients' : 
                  'Up to 5 clients'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? 'AI 分类功能' : 
                  currentLocale === 'fr' ? 'Catégorisation par IA' : 
                  'AI categorization'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '基本报表' : 
                  currentLocale === 'fr' ? 'Rapports de base' : 
                  'Basic reports'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '电子邮件支持' : 
                  currentLocale === 'fr' ? 'Support par email' : 
                  'Email support'}
@@ -84,6 +94,9 @@ export function PricingSection() {
               {currentLocale === 'zh' ? '最受欢迎' : 
                currentLocale === 'fr' ? 'PLUS POPULAIRE' : 
                'MOST POPULAR'}
+            </div>
+            <div className="flex items-center justify-center h-16 w-16 bg-primary/10 rounded-lg mb-6">
+              <FontAwesomeIcon icon={faBuildingColumns} className="h-8 w-8 text-primary" />
             </div>
             <h3 className="text-2xl font-bold mb-2">
               {currentLocale === 'zh' ? '专业版' : 
@@ -105,31 +118,31 @@ export function PricingSection() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="text-white mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-white mr-2" />
                 {currentLocale === 'zh' ? '无限客户' : 
                  currentLocale === 'fr' ? 'Clients illimités' : 
                  'Unlimited clients'}
               </li>
               <li className="flex items-center">
-                <span className="text-white mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-white mr-2" />
                 {currentLocale === 'zh' ? '高级 AI 分类功能' : 
                  currentLocale === 'fr' ? 'Catégorisation IA avancée' : 
                  'Advanced AI categorization'}
               </li>
               <li className="flex items-center">
-                <span className="text-white mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-white mr-2" />
                 {currentLocale === 'zh' ? '所有 CRA 报表' : 
                  currentLocale === 'fr' ? 'Tous les rapports CRA' : 
                  'All CRA reports'}
               </li>
               <li className="flex items-center">
-                <span className="text-white mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-white mr-2" />
                 {currentLocale === 'zh' ? '优先支持' : 
                  currentLocale === 'fr' ? 'Support prioritaire' : 
                  'Priority support'}
               </li>
               <li className="flex items-center">
-                <span className="text-white mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-white mr-2" />
                 {currentLocale === 'zh' ? '客户门户' : 
                  currentLocale === 'fr' ? 'Portail client' : 
                  'Client portal'}
@@ -144,6 +157,9 @@ export function PricingSection() {
 
           {/* Enterprise Plan */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="flex items-center justify-center h-16 w-16 bg-primary/10 rounded-lg mb-6">
+              <FontAwesomeIcon icon={faRocket} className="h-8 w-8 text-primary" />
+            </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {currentLocale === 'zh' ? '企业版' : 
                currentLocale === 'fr' ? 'Entreprise' : 
@@ -163,31 +179,31 @@ export function PricingSection() {
             </div>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '包含专业版所有功能' : 
                  currentLocale === 'fr' ? 'Tout ce qui est inclus dans Pro' : 
                  'Everything in Pro'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '自定义集成' : 
                  currentLocale === 'fr' ? 'Intégrations personnalisées' : 
                  'Custom integrations'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '专属客户经理' : 
                  currentLocale === 'fr' ? 'Gestionnaire de compte dédié' : 
                  'Dedicated account manager'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? '本地部署选项' : 
                  currentLocale === 'fr' ? 'Option sur site' : 
                  'On-premise option'}
               </li>
               <li className="flex items-center">
-                <span className="text-green-500 mr-3">✓</span>
+                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 text-green-500 mr-2" />
                 {currentLocale === 'zh' ? 'SLA 服务级别保证' : 
                  currentLocale === 'fr' ? 'Garantie de niveau de service (SLA)' : 
                  'SLA guarantee'}

@@ -1,6 +1,8 @@
-'use client';
+"use client";
 
-import { useLocale } from 'next-intl';
+import { useLocale } from "next-intl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faArrowRight, faPlayCircle, faRobot } from "@fortawesome/free-solid-svg-icons";
 
 export function HeroSection() {
   const currentLocale = useLocale();
@@ -37,10 +39,16 @@ export function HeroSection() {
                 {currentLocale === 'zh' ? '开始 3 个月免费试用' : 
                  currentLocale === 'fr' ? 'Essai gratuit de 3 mois' : 
                  'Start 3-Month Free Trial'}
-                <span className="ml-2 group-hover:translate-x-1 transition">→</span>
+                <FontAwesomeIcon
+                  icon={faArrowRight}
+                  className="ml-2 group-hover:translate-x-1 transition"
+                />
               </button>
               <button className="border border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-primary hover:text-primary transition flex items-center justify-center">
-                <span className="mr-2">▶</span>
+                <FontAwesomeIcon
+                  icon={faPlayCircle}
+                  className="mr-2"
+                />
                 {currentLocale === 'zh' ? '观看演示' : 
                  currentLocale === 'fr' ? 'Voir la démo' : 
                  'Watch Demo'}
@@ -48,13 +56,19 @@ export function HeroSection() {
             </div>
             <div className="mt-8 flex items-center space-x-6 text-sm text-gray-600">
               <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <FontAwesomeIcon 
+                  icon={faCheck} 
+                  className="fa-icon text-green-500 mr-2"
+                />
                 {currentLocale === 'zh' ? '无需信用卡' : 
                  currentLocale === 'fr' ? 'Aucune carte de crédit requise' : 
                  'No credit card required'}
               </div>
               <div className="flex items-center">
-                <span className="text-green-500 mr-2">✓</span>
+                <FontAwesomeIcon 
+                  icon={faCheck} 
+                  className="fa-icon text-green-500 mr-2"
+                />
                 {currentLocale === 'zh' ? '随时可取消' : 
                  currentLocale === 'fr' ? 'Annulez à tout moment' : 
                  'Cancel anytime'}
@@ -69,7 +83,10 @@ export function HeroSection() {
                 <div className="bg-gray-50 rounded-xl p-6 mb-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-sm">AI</span>
+                      <FontAwesomeIcon
+                        icon={faRobot}
+                        className="text-white text-sm"
+                      />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm text-gray-600 mb-2">AI Assistant</p>

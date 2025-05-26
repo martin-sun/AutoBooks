@@ -1,12 +1,19 @@
 'use client';
 
 import { useLocale } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
 
 export function CTASection() {
   const currentLocale = useLocale();
   return (
     <section className="py-20 px-6 bg-gradient-to-br from-primary to-secondary">
       <div className="container mx-auto max-w-4xl text-center">
+        <div className="text-center">
+          <div className="flex items-center justify-center h-16 w-16 bg-white/10 rounded-full mb-6 mx-auto">
+            <FontAwesomeIcon icon={faRocket} className="h-8 w-8 text-white" />
+          </div>
+        </div>
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
           {currentLocale === 'zh' ? '准备好转变您的业务了吗？' : 
            currentLocale === 'fr' ? 'Prêt à transformer votre cabinet ?' : 

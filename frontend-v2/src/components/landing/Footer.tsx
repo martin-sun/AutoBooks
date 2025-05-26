@@ -2,6 +2,14 @@
 
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTwitter,
+  faLinkedin,
+  faFacebook,
+  faYoutube
+} from '@fortawesome/free-brands-svg-icons';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 export function Footer() {
   const currentLocale = useLocale();
@@ -12,7 +20,7 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm">📊</span>
+                <FontAwesomeIcon icon={faChartLine} className="text-white text-sm" />
               </div>
               <span className="text-xl font-bold text-white">AutoBooks</span>
             </div>
@@ -140,28 +148,24 @@ export function Footer() {
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} AutoBooks. 
+            &copy; {new Date().getFullYear()} AutoBooks. 
             {currentLocale === 'zh' ? '在加拿大用 ❤️ 制造 🇨🇦' : 
              currentLocale === 'fr' ? 'Fait avec ❤️ au Canada 🇨🇦' : 
              'Made with ❤️ in Canada 🇨🇦'}
           </p>
           <div className="flex space-x-6">
-            <Link href="#" className="hover:text-white transition">
-              <span className="sr-only">Twitter</span>
-              <span>𝕏</span>
-            </Link>
-            <Link href="#" className="hover:text-white transition">
-              <span className="sr-only">LinkedIn</span>
-              <span>in</span>
-            </Link>
-            <Link href="#" className="hover:text-white transition">
-              <span className="sr-only">Facebook</span>
-              <span>f</span>
-            </Link>
-            <Link href="#" className="hover:text-white transition">
-              <span className="sr-only">YouTube</span>
-              <span>▶</span>
-            </Link>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+              <FontAwesomeIcon icon={faTwitter} className="fa-icon" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+              <FontAwesomeIcon icon={faLinkedin} className="fa-icon" />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+              <FontAwesomeIcon icon={faFacebook} className="fa-icon" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+              <FontAwesomeIcon icon={faYoutube} className="fa-icon" />
+            </a>
           </div>
         </div>
       </div>

@@ -50,3 +50,37 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
 }
+
+/* 从 landing.css 移过来的自定义样式 */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #2563eb, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-glow {
+  box-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+}
+
+.fa-icon {
+  @apply h-6 w-6 transition-all duration-300;
+}
+
+.float-icon {
+  animation: float 6s ease-in-out infinite;
+}

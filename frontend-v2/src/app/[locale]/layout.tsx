@@ -4,6 +4,8 @@ import { getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
 import { locales } from '@/i18n/request';
 import "../globals.css";
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 // Define fonts with consistent class names
 const geistSans = Geist({
@@ -25,6 +27,8 @@ const roboto = Roboto({
   display: 'swap',
   variable: "--font-roboto",
 });
+
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: "AutoBooks - Professional Bookkeeping Solution",

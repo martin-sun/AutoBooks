@@ -75,6 +75,13 @@ src/
 
 ## UI 开发规范
 
+- [x] **Tailwind CSS 使用规范**：
+  - [ ] 使用 Next.js 15 内置的 Tailwind CSS 集成，不要手动编译 Tailwind CSS
+  - [ ] 所有 Tailwind 指令（@tailwind、@layer 等）必须放在全局 CSS 文件（src/app/globals.css）中
+  - [ ] 不要创建单独的 CSS 文件来导入 Tailwind 指令
+  - [ ] 不要在 package.json 中添加手动编译 Tailwind CSS 的脚本
+  - [ ] 自定义样式应直接添加到全局 CSS 文件或使用 CSS Modules
+
 - [x] **Material Design 规范**：
   - [ ] 遵循 Material Design 3 设计系统规范
   - [ ] 使用 Material Tailwind React 组件库作为基础 UI 组件
