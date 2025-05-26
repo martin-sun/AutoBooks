@@ -51,8 +51,15 @@ export default async function LocaleLayout(props: Props) {
   const params = await props.params;
   const locale = params.locale;
   
-  // 加载消息
-  const messages = await getMessages();
+  // 直接加载当前语言的消息文件
+  let messages;
+  try {
+    messages = (await import(`@/i18n/locales/${locale}.json`)).default;
+  } catch (error) {
+    console.error(`Could not load messages for locale: ${locale}`, error);
+    // 如果找不到当前语言的翻译，回退到英文
+    messages = (await import('@/i18n/locales/en.json')).default;
+  }
   
   // Ensure consistent date and time format between server and client
   // Use a fixed timestamp for server rendering to avoid hydration mismatch

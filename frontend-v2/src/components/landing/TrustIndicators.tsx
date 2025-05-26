@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShieldAlt,
@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export function TrustIndicators() {
-  const currentLocale = useLocale();
+  const t = useTranslations('Landing.trustIndicators');
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-6">
@@ -21,21 +21,13 @@ export function TrustIndicators() {
               className="text-2xl text-gray-500"
             />
             <span className="font-semibold">
-              {currentLocale === "zh"
-                ? "银行级安全性"
-                : currentLocale === "fr"
-                ? "Sécurité de niveau bancaire"
-                : "Bank-Level Security"}
+              {t('security')}
             </span>
           </div>
           <div className="flex items-center space-x-2">
             <FontAwesomeIcon icon={faFlag} className="text-2xl text-gray-500" />
             <span className="font-semibold">
-              {currentLocale === "zh"
-                ? "100% 加拿大制造"
-                : currentLocale === "fr"
-                ? "100% Canadien"
-                : "100% Canadian"}
+              {t('canadian')}
             </span>
           </div>
           <div className="flex items-center space-x-2">
@@ -44,11 +36,7 @@ export function TrustIndicators() {
               className="text-2xl text-gray-500"
             />
             <span className="font-semibold">
-              {currentLocale === "zh"
-                ? "99.9% 的运行时间"
-                : currentLocale === "fr"
-                ? "99.9% de disponibilité"
-                : "99.9% Uptime"}
+              {t('uptime')}
             </span>
           </div>
           <div className="flex items-center space-x-2">
@@ -57,11 +45,7 @@ export function TrustIndicators() {
               className="text-2xl text-gray-500"
             />
             <span className="font-semibold">
-              {currentLocale === "zh"
-                ? "24/7 全天候支持"
-                : currentLocale === "fr"
-                ? "Support 24/7"
-                : "24/7 Support"}
+              {t('support')}
             </span>
           </div>
         </div>

@@ -35,9 +35,89 @@
         "description": "Securely share financial data and reports with your clients through a professional portal."
       }
     },
+    "benefits": {
+      "title": "Transform Your Practice, Transform Your Life",
+      "subtitle": "Real results from real accountants using AutoBooks",
+      "stats": {
+        "timeSaved": {
+          "value": "73%",
+          "label": "Time Saved",
+          "description": "on routine bookkeeping"
+        },
+        "moreClients": {
+          "value": "2.5x",
+          "label": "More Clients",
+          "description": "served per accountant"
+        },
+        "revenueIncrease": {
+          "value": "45%",
+          "label": "Revenue Increase",
+          "description": "within first year"
+        },
+        "clientSatisfaction": {
+          "value": "98%",
+          "label": "Client Satisfaction",
+          "description": "faster turnaround times"
+        }
+      },
+      "testimonial": {
+        "name": "Sarah Chen, CPA",
+        "company": "Chen & Associates Accounting",
+        "quote": "AutoBooks transformed my practice. I've gone from managing 30 clients to over 75, while actually working fewer hours. The AI categorization alone saves me 20+ hours per week. My clients love the faster turnaround, and I love focusing on advisory work instead of data entry."
+      }
+    },
+    "trustIndicators": {
+      "security": "Bank-Level Security",
+      "canadian": "100% Canadian",
+      "uptime": "99.9% Uptime",
+      "support": "24/7 Support"
+    },
     "pricing": {
       "title": "Pricing That <1>Grows With You</1>",
-      "subtitle": "Choose the plan that fits your practice's needs. No hidden fees, cancel anytime.",
+      "subtitle": "Start free, scale as you grow",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "Perfect for new practices",
+          "price": "$0",
+          "period": "/month",
+          "features": {
+            "clients": "Up to 5 clients",
+            "ai": "AI categorization",
+            "reports": "Basic reports",
+            "support": "Email support"
+          },
+          "cta": "Start Free"
+        },
+        "professional": {
+          "name": "Professional",
+          "description": "For growing practices",
+          "price": "$49",
+          "period": "/month per 10 clients",
+          "badge": "Most Popular",
+          "features": {
+            "clients": "Unlimited clients",
+            "ai": "Advanced AI features",
+            "reports": "All CRA reports",
+            "support": "Priority support",
+            "portal": "Client portal"
+          },
+          "cta": "Start 3-Month Trial"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "For large firms",
+          "price": "Custom",
+          "features": {
+            "everything": "Everything in Pro",
+            "integrations": "Custom integrations",
+            "manager": "Dedicated account manager",
+            "onpremise": "On-premise option",
+            "sla": "SLA guarantee"
+          },
+          "cta": "Contact Sales"
+        }
+      },
       "starter": {
         "name": "Starter",
         "tagline": "Perfect for new practices",
@@ -82,6 +162,64 @@
       }
     },
     "cta": {
+      "title": "Ready to Transform Your Practice?",
+      "subtitle": "Join thousands of Canadian accountants who are serving more clients and earning more revenue with AutoBooks.",
+      "trial": "Start Your 3-Month Free Trial",
+      "demo": "Schedule a Demo",
+      "note": "No credit card required • Setup in 15 minutes • Cancel anytime"
+    },
+    "howItWorks": {
+      "title": "Get Started in 3 Simple Steps",
+      "subtitle": "Up and running in less than 15 minutes",
+      "steps": {
+        "connect": {
+          "title": "Connect Your Clients",
+          "description": "Import from QuickBooks, Excel, or connect bank feeds directly"
+        },
+        "ai": {
+          "title": "AI Does the Heavy Lifting",
+          "description": "Transactions are automatically categorized and reconciled"
+        },
+        "focus": {
+          "title": "Focus on Advisory",
+          "description": "Spend your time on high-value services that grow your revenue"
+        }
+      }
+    },
+    "footer": {
+      "description": "AI-powered bookkeeping assistant for Canadian accountants.",
+      "sections": {
+        "product": {
+          "title": "Product",
+          "links": {
+            "features": "Features",
+            "pricing": "Pricing",
+            "security": "Security",
+            "integrations": "Integrations"
+          }
+        },
+        "resources": {
+          "title": "Resources",
+          "links": {
+            "documentation": "Documentation",
+            "api": "API Reference",
+            "blog": "Blog",
+            "webinars": "Webinars"
+          }
+        },
+        "company": {
+          "title": "Company",
+          "links": {
+            "about": "About Us",
+            "contact": "Contact",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service"
+          }
+        }
+      },
+      "copyright": "Made with ❤️ in Canada 🇨🇦"
+    },
+    "ctaSection": {
       "title": "Ready to Transform Your Practice?",
       "subtitle": "Join hundreds of accounting professionals who trust AutoBooks to streamline their bookkeeping process.",
       "ctaPrimary": "Start Your Free Trial",

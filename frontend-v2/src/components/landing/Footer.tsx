@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTwitter,
@@ -12,7 +12,7 @@ import {
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 export function Footer() {
-  const currentLocale = useLocale();
+  const t = useTranslations('Landing.footer');
   return (
     <footer className="bg-gray-900 text-gray-300 py-12 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -25,45 +25,33 @@ export function Footer() {
               <span className="text-xl font-bold text-white">AutoBooks</span>
             </div>
             <p className="text-sm">
-              {currentLocale === 'zh' ? 'AI 驱动的加拿大会计师记账助手。' : 
-               currentLocale === 'fr' ? 'Assistant de comptabilité alimenté par l\'IA pour les comptables canadiens.' : 
-               'AI-powered bookkeeping assistant for Canadian accountants.'}
+              {t('description')}
             </p>
           </div>
           
           <div>
             <h4 className="font-semibold text-white mb-4">
-              {currentLocale === 'zh' ? '产品' : 
-               currentLocale === 'fr' ? 'Produit' : 
-               'Product'}
+              {t('sections.product.title')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="#features" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '功能' : 
-                   currentLocale === 'fr' ? 'Fonctionnalités' : 
-                   'Features'}
+                  {t('sections.product.links.features')}
                 </Link>
               </li>
               <li>
                 <Link href="#pricing" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '价格' : 
-                   currentLocale === 'fr' ? 'Tarifs' : 
-                   'Pricing'}
+                  {t('sections.product.links.pricing')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '安全性' : 
-                   currentLocale === 'fr' ? 'Sécurité' : 
-                   'Security'}
+                  {t('sections.product.links.security')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '集成' : 
-                   currentLocale === 'fr' ? 'Intégrations' : 
-                   'Integrations'}
+                  {t('sections.product.links.integrations')}
                 </Link>
               </li>
             </ul>
@@ -71,37 +59,27 @@ export function Footer() {
           
           <div>
             <h4 className="font-semibold text-white mb-4">
-              {currentLocale === 'zh' ? '资源' : 
-               currentLocale === 'fr' ? 'Ressources' : 
-               'Resources'}
+              {t('sections.resources.title')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '文档' : 
-                   currentLocale === 'fr' ? 'Documentation' : 
-                   'Documentation'}
+                  {t('sections.resources.links.documentation')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? 'API 参考' : 
-                   currentLocale === 'fr' ? 'Référence API' : 
-                   'API Reference'}
+                  {t('sections.resources.links.api')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '博客' : 
-                   currentLocale === 'fr' ? 'Blog' : 
-                   'Blog'}
+                  {t('sections.resources.links.blog')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '网络研讨会' : 
-                   currentLocale === 'fr' ? 'Webinaires' : 
-                   'Webinars'}
+                  {t('sections.resources.links.webinars')}
                 </Link>
               </li>
             </ul>
@@ -109,37 +87,27 @@ export function Footer() {
           
           <div>
             <h4 className="font-semibold text-white mb-4">
-              {currentLocale === 'zh' ? '公司' : 
-               currentLocale === 'fr' ? 'Entreprise' : 
-               'Company'}
+              {t('sections.company.title')}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '关于我们' : 
-                   currentLocale === 'fr' ? 'À propos de nous' : 
-                   'About Us'}
+                  {t('sections.company.links.about')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '联系我们' : 
-                   currentLocale === 'fr' ? 'Contact' : 
-                   'Contact'}
+                  {t('sections.company.links.contact')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '隐私政策' : 
-                   currentLocale === 'fr' ? 'Politique de confidentialité' : 
-                   'Privacy Policy'}
+                  {t('sections.company.links.privacy')}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition">
-                  {currentLocale === 'zh' ? '服务条款' : 
-                   currentLocale === 'fr' ? 'Conditions d\'utilisation' : 
-                   'Terms of Service'}
+                  {t('sections.company.links.terms')}
                 </Link>
               </li>
             </ul>
@@ -149,9 +117,7 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} AutoBooks. 
-            {currentLocale === 'zh' ? '在加拿大用 ❤️ 制造 🇨🇦' : 
-             currentLocale === 'fr' ? 'Fait avec ❤️ au Canada 🇨🇦' : 
-             'Made with ❤️ in Canada 🇨🇦'}
+            {t('copyright')}
           </p>
           <div className="flex space-x-6">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">

@@ -50,38 +50,22 @@ export function Navigation() {
               href="#features"
               className="text-gray-700 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "功能"
-                : currentLocale === "fr"
-                ? "Fonctionnalités"
-                : "Features"}
+              {t("navigation.features")}
             </a>
             <a
               href="#benefits"
               className="text-gray-700 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "优势"
-                : currentLocale === "fr"
-                ? "Avantages"
-                : "Benefits"}
+              {t("navigation.benefits")}
             </a>
             <a
               href="#pricing"
               className="text-gray-700 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "价格"
-                : currentLocale === "fr"
-                ? "Tarifs"
-                : "Pricing"}
+              {t("navigation.pricing")}
             </a>
             <a href="#" className="text-gray-700 hover:text-primary transition">
-              {currentLocale === "zh"
-                ? "联系我们"
-                : currentLocale === "fr"
-                ? "Contact"
-                : "Contact"}
+              {t("navigation.contact")}
             </a>
             <LanguageSwitcher />
             <Link
@@ -112,41 +96,25 @@ export function Navigation() {
               href="#features"
               className="text-gray-700 py-2 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "功能"
-                : currentLocale === "fr"
-                ? "Fonctionnalités"
-                : "Features"}
+              {t("navigation.features")}
             </a>
             <a
               href="#benefits"
               className="text-gray-700 py-2 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "优势"
-                : currentLocale === "fr"
-                ? "Avantages"
-                : "Benefits"}
+              {t("navigation.benefits")}
             </a>
             <a
               href="#pricing"
               className="text-gray-700 py-2 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "价格"
-                : currentLocale === "fr"
-                ? "Tarifs"
-                : "Pricing"}
+              {t("navigation.pricing")}
             </a>
             <a
               href="#"
               className="text-gray-700 py-2 hover:text-primary transition"
             >
-              {currentLocale === "zh"
-                ? "联系我们"
-                : currentLocale === "fr"
-                ? "Contact"
-                : "Contact"}
+              {t("navigation.contact")}
             </a>
             <div className="py-2">
               <LanguageSwitcher />

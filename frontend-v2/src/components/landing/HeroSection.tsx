@@ -1,11 +1,14 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faArrowRight, faPlayCircle, faRobot } from "@fortawesome/free-solid-svg-icons";
+import { useLocale } from "next-intl";
 
 export function HeroSection() {
-  const currentLocale = useLocale();
+  // 使用 Landing.hero 命名空间的翻译
+  const t = useTranslations('Landing.hero');
+  const locale = useLocale();
   return (
     <section className="pt-32 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -14,31 +17,24 @@ export function HeroSection() {
             <div className="inline-flex items-center bg-blue-50 px-4 py-2 rounded-full mb-6">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
               <span className="text-sm text-gray-700">
-                {currentLocale === 'zh' ? 'AI 驱动 • 专为加拿大会计师打造' : 
-                 currentLocale === 'fr' ? 'Propulsé par l\'IA • Conçu pour les comptables canadiens' : 
-                 'AI-Powered • Built for Canadian Accountants'}
+                {t('tagline')}
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              {currentLocale === 'zh' ? '服务更多客户,' : 
-               currentLocale === 'fr' ? 'Servez plus de clients,' : 
-               'Serve More Clients,'}<br />
-              <span className="gradient-text">
-                {currentLocale === 'zh' ? '增加更多收入' : 
-                 currentLocale === 'fr' ? 'Gagnez plus de revenus' : 
-                 'Earn More Revenue'}
-              </span>
+              {locale === 'zh' ? (
+                <>服务更多客户,<br /><span className="gradient-text">增加更多收入</span></>
+              ) : locale === 'fr' ? (
+                <>Servez plus de clients,<br /><span className="gradient-text">Gagnez plus de revenus</span></>
+              ) : (
+                <>Serve More Clients,<br /><span className="gradient-text">Earn More Revenue</span></>
+              )}
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              {currentLocale === 'zh' ? 'AutoBooks 是您的人工智能记账助手，可自动执行重复性任务，让您专注于高价值的咨询服务并发展您的业务。' : 
-               currentLocale === 'fr' ? 'AutoBooks est votre assistant de comptabilité alimenté par l\'IA qui automatise les tâches répétitives, vous permettant ainsi de vous concentrer sur des services consultatifs à forte valeur ajoutée et de développer votre cabinet.' : 
-               'AutoBooks is your AI-powered bookkeeping assistant that automates repetitive tasks, so you can focus on high-value advisory services and grow your practice.'}
+              {t('description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-primary text-white px-8 py-4 rounded-full hover:bg-blue-600 transition flex items-center justify-center group">
-                {currentLocale === 'zh' ? '开始 3 个月免费试用' : 
-                 currentLocale === 'fr' ? 'Essai gratuit de 3 mois' : 
-                 'Start 3-Month Free Trial'}
+                {t('ctaPrimary')}
                 <FontAwesomeIcon
                   icon={faArrowRight}
                   className="ml-2 group-hover:translate-x-1 transition"
@@ -49,9 +45,7 @@ export function HeroSection() {
                   icon={faPlayCircle}
                   className="mr-2"
                 />
-                {currentLocale === 'zh' ? '观看演示' : 
-                 currentLocale === 'fr' ? 'Voir la démo' : 
-                 'Watch Demo'}
+                {t('ctaSecondary')}
               </button>
             </div>
             <div className="mt-8 flex items-center space-x-6 text-sm text-gray-600">
@@ -60,18 +54,14 @@ export function HeroSection() {
                   icon={faCheck} 
                   className="fa-icon text-green-500 mr-2"
                 />
-                {currentLocale === 'zh' ? '无需信用卡' : 
-                 currentLocale === 'fr' ? 'Aucune carte de crédit requise' : 
-                 'No credit card required'}
+                {t('noCreditCard')}
               </div>
               <div className="flex items-center">
                 <FontAwesomeIcon 
                   icon={faCheck} 
                   className="fa-icon text-green-500 mr-2"
                 />
-                {currentLocale === 'zh' ? '随时可取消' : 
-                 currentLocale === 'fr' ? 'Annulez à tout moment' : 
-                 'Cancel anytime'}
+                Cancel anytime
               </div>
             </div>
           </div>
