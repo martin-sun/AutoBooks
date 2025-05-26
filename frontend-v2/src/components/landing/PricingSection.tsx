@@ -9,9 +9,7 @@ export function PricingSection() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            {t('title').split(',')[0]} <span className="gradient-text">
-              {t('title').split(',')[1]}
-            </span>
+            {t('titlePrefix')} <span className="gradient-text">{t('titleHighlight')}</span>
           </h2>
           <p className="text-xl text-gray-600">
             {t('subtitle')}
@@ -58,7 +56,7 @@ export function PricingSection() {
 
           {/* Professional Plan */}
           <div className="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 shadow-xl text-white relative">
-            <div className="absolute top-0 right-0 bg-white text-primary font-semibold py-1 px-4 rounded-bl-lg rounded-tr-lg">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-semibold">
               {t('plans.professional.badge')}
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">

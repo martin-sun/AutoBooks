@@ -3,12 +3,10 @@
 import { useTranslations } from "next-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faArrowRight, faPlayCircle, faRobot } from "@fortawesome/free-solid-svg-icons";
-import { useLocale } from "next-intl";
 
 export function HeroSection() {
   // 使用 Landing.hero 命名空间的翻译
   const t = useTranslations('Landing.hero');
-  const locale = useLocale();
   return (
     <section className="pt-32 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -21,13 +19,7 @@ export function HeroSection() {
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              {locale === 'zh' ? (
-                <>服务更多客户,<br /><span className="gradient-text">增加更多收入</span></>
-              ) : locale === 'fr' ? (
-                <>Servez plus de clients,<br /><span className="gradient-text">Gagnez plus de revenus</span></>
-              ) : (
-                <>Serve More Clients,<br /><span className="gradient-text">Earn More Revenue</span></>
-              )}
+              {t('titlePrefix')}<br /><span className="gradient-text">{t('titleHighlight')}</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               {t('description')}

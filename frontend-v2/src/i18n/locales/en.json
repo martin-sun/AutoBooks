@@ -13,7 +13,8 @@
   "Landing": {
     "hero": {
       "tagline": "AI-Powered • Built for Canadian Accountants",
-      "title": "Serve More Clients,\n      <1>Earn More Revenue</1>",
+      "titlePrefix": "Serve More Clients,",
+      "titleHighlight": "Earn More Revenue",
       "description": "AutoBooks is your AI-powered bookkeeping assistant that automates repetitive tasks, so you can focus on high-value advisory services and grow your practice.",
       "ctaPrimary": "Start 3-Month Free Trial",
       "ctaSecondary": "Watch Demo",
@@ -73,7 +74,8 @@
       "support": "24/7 Support"
     },
     "pricing": {
-      "title": "Pricing That <1>Grows With You</1>",
+      "titlePrefix": "Pricing That",
+      "titleHighlight": "Grows With You",
       "subtitle": "Start free, scale as you grow",
       "plans": {
         "starter": {
