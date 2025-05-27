@@ -1,6 +1,7 @@
 {
   "app": {
-    "name": "AutoBooks"
+    "name": "AutoBooks",
+    "description": "为加拿大会计师打造的AI驱动记账系统"
   },
   "Index": {
     "title": "欢迎使用 AutoBooks",

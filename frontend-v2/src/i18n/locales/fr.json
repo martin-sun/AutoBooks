@@ -1,6 +1,7 @@
 {
   "app": {
-    "name": "AutoBooks"
+    "name": "AutoBooks",
+    "description": "Comptabilité propulsée par l'IA pour les comptables canadiens"
   },
   "Index": {
     "title": "Bienvenue sur AutoBooks",

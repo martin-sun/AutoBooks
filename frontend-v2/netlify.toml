@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+  # 注意：不要在这里放置敏感信息，如API密钥
+  # 只放置公共环境变量或占位符
+  NEXT_PUBLIC_SITE_URL = "https://autobooks-multilingual.windsurf.build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

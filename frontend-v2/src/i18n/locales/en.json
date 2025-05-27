@@ -1,6 +1,7 @@
 {
   "app": {
-    "name": "AutoBooks"
+    "name": "AutoBooks",
+    "description": "AI-powered bookkeeping for Canadian accountants"
   },
   "Index": {
     "title": "Welcome to AutoBooks",
